@@ -1,9 +1,19 @@
+.menuBar{
+    padding: 2vh;
+    background-color: whitesmoke;
+}
+.center{
+    align-items: center;
+}
 .logo{
-    background-color: black;
+    font-size: 30px;
+    color: rgb(101, 101, 230);
 }
 .ymd{
-    background-color: red;
+    font-size: 30px;
 }
 .login{
-    background-color: blue;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
 }
