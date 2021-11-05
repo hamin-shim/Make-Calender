@@ -20,6 +20,20 @@ function Month(){
                     })}
             </tr>)
         }
+        result[0] = result[0].props.children.map((data, index)=>{
+            let dayNum = data.props.children.props.children;
+            if (dayNum>8){
+                dayNum = null;
+            }
+            return <td key={index}><span>{dayNum}</span></td>
+        })
+        result[lastWeek-firstWeek] = result[lastWeek-firstWeek].props.children.map((data, index)=>{
+            let dayNum = data.props.children.props.children;
+            if (dayNum<23){
+                dayNum = null;
+            }
+            return <td key={index}><span>{dayNum}</span></td>
+        })
         return (result);
     }
     return(
