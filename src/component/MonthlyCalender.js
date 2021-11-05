@@ -1,7 +1,7 @@
 import { useState } from "react";
 import moment from 'moment'
 import "../style/monthlyCalender.scss"
-function MonthlyCalender(){
+const MonthlyCalender = ()=>{
     const [getMoment, setMoment] = useState(moment());
     const today = getMoment;
     const firstWeek = today.clone().startOf('month').week();
