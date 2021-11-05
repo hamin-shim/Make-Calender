@@ -1,5 +1,5 @@
 import {useHistory} from 'react-router-dom'
-import "../style/style.scss"
+import "../style/navbar.scss"
 function Navbar(){
     const history = useHistory();
     return(

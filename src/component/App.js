@@ -10,7 +10,6 @@ function App() {
   return (
     <div className="App">
       <Navbar/>
-      <MonthlyCalender/>
       <Route exact path="/">
         <Home/>
       </Route>
