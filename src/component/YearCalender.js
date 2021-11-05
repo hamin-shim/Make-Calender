@@ -26,7 +26,7 @@ export default ()=>{
                                 wrongNum = true;
                             }
                             return(
-                                <div className="day" key={index}>{(wrongNum) ? null : days.format('D')}</div>
+                                <div className={`day ${wrongNum} ${week, index}`} key={index}>{(wrongNum) ? null : days.format('D')}</div>
                             )
                         })
                     }
@@ -42,10 +42,19 @@ export default ()=>{
                 <span>{year.format('YYYY년')}</span>
                 <button className="btn btn-primary" onClick={()=>{setYear(year.clone().add(1,'year'))}}>▷▷</button>
             </div>
-            <div className="whole">
+            <div className="monthLab">
             {monthArray.map((month,i)=>(
                 <div className={`month ${i}month`}>
                     <h1>{i+1}월</h1>
+                    <div className="week dayName">
+                            <div className="day sun">S</div>
+                            <div className="day">M</div>
+                            <div className="day">T</div>
+                            <div className="day">W</div>
+                            <div className="day">T</div>
+                            <div className="day">F</div>
+                            <div className="day sat">S</div>
+                    </div>
                     {calendarArr(month)}
                 </div>
             ))}
