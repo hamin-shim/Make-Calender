@@ -1,0 +1,14 @@
+.screen{
+    display: flex;
+}
+.make{
+    width: 20%;
+    height: 50vh;
+    margin-top: 0px;
+    border: 2px solid black;
+    background-color: rgb(214, 177, 219);
+    .description{
+        width: 200px;
+        height: 150px;
+    }
+}

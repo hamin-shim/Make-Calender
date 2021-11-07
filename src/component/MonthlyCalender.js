@@ -1,12 +1,19 @@
 import { useState } from "react";
 import moment from 'moment'
 import "../style/monthlyCalender.scss"
+import { useHistory } from "react-router";
 const MonthlyCalender = ()=>{
     const [getMoment, setMoment] = useState(moment());
+    const [modal, setModal] = useState([]);
+    const history = useHistory();
     const today = getMoment;
     const firstWeek = today.clone().startOf('month').week();
     const lastWeek = today.clone().endOf('month').week() === 1 ? 53 : today.clone().endOf('month').week();
-
+    const onClickHandler = (e)=>{
+        const {target:{className : dayId}} = e;
+        const dayNum = parseInt(dayId.substr(0,3))
+        history.push(`/day/${dayNum}`)
+    }
     const calendarArr = ()=>{
         let result = [];
         let week = firstWeek;
@@ -19,8 +26,10 @@ const MonthlyCalender = ()=>{
                         if((week === firstWeek && parseInt(days.format('D'))>8)||(week===lastWeek && parseInt(days.format('D'))<24)){
                             wrongNum = true;
                         }
-                        return (
-                            <div className = {`${week , index, wrongNum} day`} key={index}>{(wrongNum) ? null : days.format('D')}</div>
+                        return (<>
+                            <div onClick={onClickHandler} className = {`${week}${index} ${wrongNum} day`} key={index}>{(wrongNum) ? null : days.format('D')}</div>
+                            {modal[0] ? <h1>hi</h1>:null }
+                            </>
                         )
                     })}
             </div>)
@@ -28,7 +37,7 @@ const MonthlyCalender = ()=>{
         return(result)
     }
     return(
-        <div>
+        <div className="wrap">
             <div className="container">
                 <main>
                     <h1>월간캘린더입니다</h1>
@@ -52,7 +61,6 @@ const MonthlyCalender = ()=>{
                 </main>
             </div>
         </div>
-
     )
 }
 export default MonthlyCalender;
