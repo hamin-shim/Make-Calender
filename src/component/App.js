@@ -5,6 +5,7 @@ import Month from './Month';
 import MonthlyCalender from './MonthlyCalender';
 import Navbar from './Navbar';
 import Weekly from './Weekly';
+import { firestore } from "./firebase";
 
 function App() {
   return (
