@@ -1,9 +1,12 @@
 import MonthlyCalender from "./MonthlyCalender"
 import "../style/month.scss"
+import { useParams } from "react-router"
 const Month = ()=>{
+    const {id} = useParams();
+    console.log(id);
     return(
         <div className="screen">
-        <MonthlyCalender/>
+        <MonthlyCalender date={id}/>
         <div className="make">
             <form>
                 <p>날짜:<input type="text" placeholder="2000-00-00"/></p>

@@ -18,7 +18,7 @@ function App() {
       <Route path="/year">
         <Home/>
       </Route>
-      <Route path="/month">
+      <Route path="/month/:id">
         <Month/>
       </Route>
       <Route path="/week">

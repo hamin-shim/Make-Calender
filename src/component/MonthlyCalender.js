@@ -2,17 +2,36 @@ import { useState } from "react";
 import moment from 'moment'
 import "../style/monthlyCalender.scss"
 import { useHistory } from "react-router";
-const MonthlyCalender = ()=>{
+const MonthlyCalender = ({date})=>{
+    let year = parseInt(date.substr(0,4));
+    let month = parseInt(date.slice(5))
+    const [specific,setSpecific] = useState(moment(date,'YYYY-MM'));
     const [getMoment, setMoment] = useState(moment());
     const [modal, setModal] = useState([]);
     const history = useHistory();
     const today = getMoment;
-    const firstWeek = today.clone().startOf('month').week();
-    const lastWeek = today.clone().endOf('month').week() === 1 ? 53 : today.clone().endOf('month').week();
+    const firstWeek = specific.clone().startOf('month').week();
+    const lastWeek = specific.clone().endOf('month').week() === 1 ? 53 : today.clone().endOf('month').week();
     const onClickHandler = (e)=>{
         const {target:{className : dayId}} = e;
         const dayNum = parseInt(dayId.substr(0,3))
         history.push(`/day/${dayNum}`)
+    }
+    const onMonthSubtracter = ()=>{
+        setSpecific(specific.clone().subtract(1,'month'))
+        if(month===1){
+            history.push(`/month/${year-1}-12`)
+        }else{
+            history.push(`/month/${year}-${month-1}`)
+        }
+    }
+    const onMonthAdder = ()=>{
+        setSpecific(specific.clone().add(1,'month'))
+        if(month===12){
+            history.push(`/month/${year+1}-1`)
+        }else{
+            history.push(`/month/${year}-${month+1}`)
+        }
     }
     const calendarArr = ()=>{
         let result = [];
@@ -42,9 +61,9 @@ const MonthlyCalender = ()=>{
                 <main>
                     <h1>월간캘린더입니다</h1>
                     <div className="control">
-                        <button className="btn btn-primary" onClick={()=>{setMoment(getMoment.clone().subtract(1,'month'))}}>◁◁</button>
-                        <span>{today.format('YYYY-MM')}</span>
-                        <button className="btn btn-primary" onClick={()=>{setMoment(getMoment.clone().add(1,'month'))}}>▷▷</button>
+                        <button className="btn btn-primary" onClick={onMonthSubtracter}>◁◁</button>
+                        <span>{specific.format('YYYY-MM')}</span>
+                        <button className="btn btn-primary" onClick={onMonthAdder}>▷▷</button>
                     </div>
                     <div className="monthTotal">
                         <div className="week dayName">
