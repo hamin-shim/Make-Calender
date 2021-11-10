@@ -1,14 +1,21 @@
 import moment from "moment";
 import { useState } from "react";
+import { useHistory } from "react-router";
 import "../style/year.scss"
 export default ()=>{
     const [year, setYear] = useState(moment());
     const thisYear = year;
+    const history = useHistory();
     let firstMonth = thisYear.clone().startOf('year');
     let lastMonth = thisYear.clone().endOf('year');
     let monthArray = [];
     for(let i=0; i<12;i++){
         monthArray.push(firstMonth.clone().add(i,'month'))
+    }
+    const onClick = (e)=>{
+        const {nativeEvent:{path:{length}}} = e;
+        const datePath = e.nativeEvent.path[length-10].className.substring(6);
+        history.push(`/month/${datePath}`)
     }
     const calendarArr = (month) => {
         let result = [];
@@ -44,7 +51,7 @@ export default ()=>{
             </div>
             <div className="monthLab">
             {monthArray.map((month,i)=>(
-                <div className={`month ${i}month`}>
+                <div onClick={onClick} className={`month ${year.format('YYYY')}-${i+1}`}>
                     <h1>{i+1}월</h1>
                     <div className="week dayName">
                             <div className="day sun">S</div>

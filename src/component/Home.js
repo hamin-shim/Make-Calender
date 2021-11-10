@@ -1,7 +1,7 @@
 import Calendar from "react-calendar";
 import YearCalender from "./YearCalender";
 // import "../style/home.scss"
-function Home(){
+const Home = ()=>{
     return(
         <div>
                 {<YearCalender/>}
