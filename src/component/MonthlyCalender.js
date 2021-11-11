@@ -2,20 +2,27 @@ import { useState } from "react";
 import moment from 'moment'
 import "../style/monthlyCalender.scss"
 import { useHistory } from "react-router";
+import Modal from "./Modal";
 const MonthlyCalender = ({date})=>{
     let year = parseInt(date.substr(0,4));
-    let month = parseInt(date.slice(5))
+    let month = parseInt(date.slice(5));
     const [specific,setSpecific] = useState(moment(date,'YYYY-MM'));
     const [getMoment, setMoment] = useState(moment());
-    const [modal, setModal] = useState([]);
+    const [toggle, setToggle] = useState(false);
     const history = useHistory();
     const today = getMoment;
     const firstWeek = specific.clone().startOf('month').week();
-    const lastWeek = specific.clone().endOf('month').week() === 1 ? 53 : today.clone().endOf('month').week();
+    const lastWeek = specific.clone().endOf('month').week() === 1 ? 53 : specific.clone().endOf('month').week();
     const onClickHandler = (e)=>{
         const {target:{className : dayId}} = e;
-        const dayNum = parseInt(dayId.substr(0,3))
-        history.push(`/day/${dayNum}`)
+        const dayData = dayId.split(" ");
+        const day = dayData[0];
+        const isItDate = dayData[1];
+        console.log(day, isItDate)
+        if(isItDate==="false"){
+            history.push(`/month/${year}-${month}-${day}`)
+            setToggle(true)
+        }
     }
     const onMonthSubtracter = ()=>{
         setSpecific(specific.clone().subtract(1,'month'))
@@ -33,6 +40,9 @@ const MonthlyCalender = ({date})=>{
             history.push(`/month/${year}-${month+1}`)
         }
     }
+    const onToggleClick = ()=>{
+        setToggle(prev=>!prev)
+    }
     const calendarArr = ()=>{
         let result = [];
         let week = firstWeek;
@@ -46,8 +56,7 @@ const MonthlyCalender = ({date})=>{
                             wrongNum = true;
                         }
                         return (<>
-                            <div onClick={onClickHandler} className = {`${week}${index} ${wrongNum} day`} key={index}>{(wrongNum) ? null : days.format('D')}</div>
-                            {modal[0] ? <h1>hi</h1>:null }
+                            <div onClick={onClickHandler} className = {`${parseInt(days.format('D'))} ${wrongNum} day`} key={index}>{(wrongNum) ? null : days.format('D')}</div>
                             </>
                         )
                     })}
@@ -65,7 +74,7 @@ const MonthlyCalender = ({date})=>{
                         <span>{specific.format('YYYY-MM')}</span>
                         <button className="btn btn-primary" onClick={onMonthAdder}>▷▷</button>
                     </div>
-                    <div className="monthTotal">
+                    <div className={`monthTotal ${toggle ? "hidden" : null}`}>
                         <div className="week dayName">
                             <div className="day sun">Sun</div>
                             <div className="day">Mon</div>
@@ -76,6 +85,9 @@ const MonthlyCalender = ({date})=>{
                             <div className="day sat">Sat</div>
                         </div>
                         {calendarArr()}
+                    </div>
+                    <div onClick={onToggleClick} className="specific date">
+                    <Modal />
                     </div>
                 </main>
             </div>
