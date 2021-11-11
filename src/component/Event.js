@@ -1,13 +1,23 @@
 import React, { useEffect } from "react"
 import EventData from "../data/Event"
-export default ()=>{
-    EventData.map((data)=>console.log(data))
+import "../style/modal.scss"
+export default ({pathDate})=>{
+    let correctEvent = []
+    EventData.map((data)=>{
+        if(data.date === pathDate){
+            correctEvent.push(data)
+        }
+    })
+    console.log(correctEvent);
     return(
         <div>
-            <div className="title">빼빼로데이</div>
-            <div className="start_time">9시</div>
-            <div className="end_time">23시</div>
-            <div className="description">롯데 상업 데이</div>
+            {correctEvent.map(data=>{
+                return(<div className="event">
+                    <div className="title">{data.title}</div>
+                    <div className="time">{data.time_start}~{data.time_end}</div>
+                    <div className="description">{data.description}</div>
+                </div>)
+            })}
         </div>
     )
 }

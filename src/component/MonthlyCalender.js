@@ -86,7 +86,10 @@ const MonthlyCalender = ({date})=>{
                         </div>
                         {calendarArr()}
                     </div>
-                    <div onClick={onToggleClick} className="specific date">
+
+                    <div className=
+                    {`specific ${toggle ? null : "hidden"}`}>
+                    <button onClick={onToggleClick} >되돌아가기</button>
                     <Modal />
                     </div>
                 </main>

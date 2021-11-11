@@ -27,4 +27,11 @@ export default Event = [
         time_end: 24,
         description: "아빠 생일"
     },
+    {
+        date:"2021-10-20",
+        title:"생일",
+        time_start: 9,
+        time_end: 24,
+        description: "아빠 생일"
+    },
 ]
