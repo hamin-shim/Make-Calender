@@ -1,5 +1,6 @@
 import {useHistory} from 'react-router-dom'
 import "../style/navbar.scss"
+import onSocialClick from "../routes/Auth"
 function Navbar(){
     const history = useHistory();
     const today = new Date();
@@ -15,7 +16,7 @@ function Navbar(){
                         <button type="button" className="ymd btn btn-outline-primary" onClick={()=>history.push(`/month/${today_year}-${today_month}`)}>M</button>
                         <button type="button" className="ymd btn btn-outline-primary" onClick={()=>history.push('/search')}>🔍</button>
                     </div>
-                    <div className="login col-4"><button type="button" className="btn btn-outline-primary">Log in</button></div>
+                    <div className="login col-4"><button type="button" className="btn btn-outline-primary" name="google" onClick={onSocialClick}>Log in</button></div>
                 </div>
             </div>
         </div>
