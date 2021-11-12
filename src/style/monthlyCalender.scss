@@ -1,9 +1,7 @@
 .wrap{
-    width: 1500px;
+    width: 100%;
 }
-
 main{
-    height: 800px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,14 +10,15 @@ main{
         display: flex;
         justify-content: space-evenly;
         font-size: 30px;
-        margin: 50px 0px;
+        margin: 20px 0px;
     }
     .monthTotal{
-        width: 100%;
+        width: 80%;
         height: 350px;
         transition: height 0.4s;
         overflow: hidden;
-        background-color: rgba(185, 217, 230, 0.74);
+        border:2px solid rgba(0,0,0, 0.2);
+        border-radius: 30px;
         display: flex;
         flex-direction: column
         ;
@@ -30,12 +29,17 @@ main{
             justify-content: center;
             .day{
                 border-top: 1px solid rgba(0, 0, 0, 0.1);
-                width: 10%;
+                width: 13%;
                 height: 50px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                
+                .eventExist{
+                    color: red;
+                }
+            }
+            .word{
+                border-top: 0px;
             }
             .false{
                 &:hover{
@@ -54,6 +58,9 @@ main{
     }
 }
 .hidden{
+    height: 30px!important;
+}
+.hiddenSpecific{
     height: 0px!important;
 }
 .specific{

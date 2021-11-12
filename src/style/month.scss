@@ -1,14 +1,19 @@
 .screen{
     display: flex;
 }
+.row{
+    justify-content: center;
+}
 .make{
-    width: 20%;
-    height: 50vh;
-    margin-top: 0px;
-    border: 2px solid black;
-    background-color: rgb(214, 177, 219);
+    margin: 20px;
+    padding: 10px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    background-color: rgba(101, 101, 230, 0.3);
+    input{
+        width: 100%;
+    }
     .description{
-        width: 200px;
-        height: 150px;
+        width: 100%;
     }
 }

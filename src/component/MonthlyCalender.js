@@ -56,7 +56,9 @@ const MonthlyCalender = ({date})=>{
                             wrongNum = true;
                         }
                         return (<>
-                            <div onClick={onClickHandler} className = {`${parseInt(days.format('D'))} ${wrongNum} day`} key={index}>{(wrongNum) ? null : days.format('D')}</div>
+                            <div onClick={onClickHandler} className = {`${parseInt(days.format('D'))} ${wrongNum} day`} key={index}>{(wrongNum) ? null : days.format('D')}
+                            {wrongNum ? null : <span className="eventExist">˚</span>}
+                            </div>
                             </>
                         )
                     })}
@@ -65,35 +67,32 @@ const MonthlyCalender = ({date})=>{
         return(result)
     }
     return(
-        <div className="wrap">
-            <div className="container">
+        <div className="col-lg-6 col-md-8 col-sm-10">
                 <main>
-                    <h1>월간캘린더입니다</h1>
                     <div className="control">
-                        <button className="btn btn-primary" onClick={onMonthSubtracter}>◁◁</button>
-                        <span>{specific.format('YYYY-MM')}</span>
-                        <button className="btn btn-primary" onClick={onMonthAdder}>▷▷</button>
+                        <button className="btn btn-outline-secondary" onClick={onMonthSubtracter}>◁◁</button>
+                        <span>{specific.format('YYYY년 MM월')}</span>
+                        <button className="btn btn-outline-secondary" onClick={onMonthAdder}>▷▷</button>
                     </div>
                     <div className={`monthTotal ${toggle ? "hidden" : null}`}>
+                        {toggle ?<span onClick={onToggleClick}>달력 펼치기</span> : null}
                         <div className="week dayName">
-                            <div className="day sun">Sun</div>
-                            <div className="day">Mon</div>
-                            <div className="day">Tue</div>
-                            <div className="day">Wed</div>
-                            <div className="day">Thu</div>
-                            <div className="day">Fri</div>
-                            <div className="day sat">Sat</div>
+                            <div className="day sun  word ">Sun</div>
+                            <div className="day word ">Mon</div>
+                            <div className="day word ">Tue</div>
+                            <div className="day word ">Wed</div>
+                            <div className="day word ">Thu</div>
+                            <div className="day word ">Fri</div>
+                            <div className="day word  sat">Sat</div>
                         </div>
                         {calendarArr()}
                     </div>
 
                     <div className=
-                    {`specific ${toggle ? null : "hidden"}`}>
-                    <button onClick={onToggleClick} >되돌아가기</button>
+                    {`specific ${toggle ? null : "hiddenSpecific"}`}>
                     <Modal />
                     </div>
                 </main>
-            </div>
         </div>
     )
 }

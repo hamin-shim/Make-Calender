@@ -46,14 +46,14 @@ export default ()=>{
     return(
         <div className="home">
             <div className="control">
-                <button className="btn btn btn-outline-secondary" onClick={()=>{setYear(year.clone().subtract(1,'year'))}}>◁◁</button>
+                <button className="btn btn-outline-secondary" onClick={()=>{setYear(year.clone().subtract(1,'year'))}}>◁◁</button>
                 <span>{year.format('YYYY년')}</span>
-                <button className="btn btn btn-outline-secondary" onClick={()=>{setYear(year.clone().add(1,'year'))}}>▷▷</button>
+                <button className="btn btn-outline-secondary" onClick={()=>{setYear(year.clone().add(1,'year'))}}>▷▷</button>
             </div>
             <div className="monthLab container-fluid">
                 <div className="row">
             {monthArray.map((month,i)=>(
-                <div onClick={onClick} className={`month ${year.format('YYYY')}-${i+1} col-xxl-3 col-lg-4 col-md-4 col-5`}>
+                <div onClick={onClick} className={`month ${year.format('YYYY')}-${i+1} col-lg-3 col-md-4 col-5`}>
                     <h1>{i+1}월</h1>
                     <div className="week dayName">
                             <div className="day sun">S</div>

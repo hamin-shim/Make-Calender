@@ -1,3 +1,4 @@
+@import "./variables";
 .menuBar{
     padding: 2vh;
     border-bottom: 2px solid rgba(0,0,0,0.2);
@@ -6,14 +7,28 @@
     align-items: center;
 }
 .logo{
-    font-size: 30px;
+    h3{
+        font-size: $font-medium;
+    @media (max-width: 400px) {
+        font-size: $font-default;
+    }
+    }
     color: rgb(101, 101, 230);
 }
 .ymd{
-    font-size: 30px;
+    font-size: $font-default;
+    @media (max-width: 400px) {
+        font-size: $font-small;
+    }
 }
 .login{
-    font-size: 20px;
+    button{
+        font-size: $font-default;
+        @media (max-width: 400px) {
+            font-size: $font-small;
+    }
+    }
     display: flex;
     justify-content: center;
+    align-items: center;
 }
