@@ -5,8 +5,9 @@ import Home from './Home';
 import Month from './Month';
 import MonthlyCalender from './MonthlyCalender';
 import Navbar from './Navbar';
-import Weekly from './Weekly';
+
 import { firestore } from "./firebase";
+import Search from "./Search";
 
 function App() {
   return (
@@ -21,8 +22,8 @@ function App() {
       <Route path="/month/:id">
         <Month/>
       </Route>
-      <Route path="/week">
-        <Weekly/>
+      <Route path="/search">
+        <Search/>
       </Route>
     </div>
   );
