@@ -1,11 +1,20 @@
 import {useHistory} from 'react-router-dom'
 import "../style/navbar.scss"
-import onSocialClick from "../routes/Auth"
-function Navbar(){
+import { authService } from './fbase';
+
+function Navbar({isLoggedIn}){
     const history = useHistory();
     const today = new Date();
     const today_year = today.getFullYear();
     const today_month = today.getMonth()+1;
+    const logClick = ()=>{
+        if(isLoggedIn){
+            authService.signOut()
+            history.push("/")
+        }else{
+            history.push("/auth")
+        }
+    }
     return(
         <div>
             <div className="container menuBar">
@@ -16,7 +25,7 @@ function Navbar(){
                         <button type="button" className="ymd btn btn-outline-primary" onClick={()=>history.push(`/month/${today_year}-${today_month}`)}>M</button>
                         <button type="button" className="ymd btn btn-outline-primary" onClick={()=>history.push('/search')}>🔍</button>
                     </div>
-                    <div className="login col-4"><button type="button" className="btn btn-outline-primary" name="google" onClick={onSocialClick}>Log in</button></div>
+                    <div className="login col-4"><button type="button" className="btn btn-outline-primary" name="google" onClick={logClick}>{isLoggedIn ? "Log out" : "Log in"}</button></div>
                 </div>
             </div>
         </div>

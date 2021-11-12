@@ -3,7 +3,6 @@ import "../style/month.scss"
 import { useParams } from "react-router"
 const Month = ()=>{
     const {id} = useParams();
-    console.log(id);
     return(
         <div className="container">
             <div className="row">

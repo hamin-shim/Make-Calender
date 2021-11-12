@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import { authService, firebaseInstance } from "../component/fbase"
+import { authService, firebaseInstance } from "./fbase"
+import "../style/auth.scss"
+import { useHistory } from "react-router";
 
 const Auth = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [newAccount, setNewAccount] = useState(true);
+    const [newAccount, setNewAccount] = useState(false);
+    const history = useHistory();
     const [error, setError] = useState("");
     const onChange = (event) => {
         const {target: { name, value },
@@ -25,6 +28,7 @@ const Auth = () => {
         }
         const data = await authService.signInWithPopup(provider);
         console.log(data);
+        history.push("/")
     };
     const onSubmit = async (event) => {
         event.preventDefault();
@@ -39,13 +43,16 @@ const Auth = () => {
                 data = await authService.signInWithEmailAndPassword(email, password);
             }
             console.log(data);
+            history.push("/")
         } catch (error){
             setError(error.message);
         }
     };
     
     return(
-        <div>
+        <div className="auth">
+        <div className="container">
+            <span onClick={toggleAccount}>{newAccount ? "Log in" : "Create Account"}</span>
             <form onSubmit={onSubmit}>
                 <input 
                     name="email"
@@ -63,13 +70,14 @@ const Auth = () => {
                     value={password}
                     onChange={onChange}
                     />
-                <input type="submit" value="Log In" />
+                <input type="submit" value={newAccount ? "Create new Account":"Log In" } />
                 {error}
             </form>
             <div>
                 <button onClick={onSocialClick} name="google">Continue with Google</button>
             </div>
         </div>
+    </div>
     );
 };
 

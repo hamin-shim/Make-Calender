@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import moment from 'moment'
 import "../style/monthlyCalender.scss"
 import { useHistory } from "react-router";
 import Modal from "./Modal";
 const MonthlyCalender = ({date})=>{
-    let year = parseInt(date.substr(0,4));
-    let month = parseInt(date.slice(5));
-    const [specific,setSpecific] = useState(moment(date,'YYYY-MM'));
+    let split = date.split("-")
+    let year = split[0]
+    let month = split[1]
+    const [specific,setSpecific] = useState(moment(date));
     const [getMoment, setMoment] = useState(moment());
     const [toggle, setToggle] = useState(false);
     const history = useHistory();
@@ -25,7 +26,7 @@ const MonthlyCalender = ({date})=>{
         }
     }
     const onMonthSubtracter = ()=>{
-        setSpecific(specific.clone().subtract(1,'month'))
+        setSpecific(specific.subtract(1,'month'))
         if(month===1){
             history.push(`/month/${year-1}-12`)
         }else{
@@ -33,7 +34,7 @@ const MonthlyCalender = ({date})=>{
         }
     }
     const onMonthAdder = ()=>{
-        setSpecific(specific.clone().add(1,'month'))
+        setSpecific(specific.add(1,'month'))
         if(month===12){
             history.push(`/month/${year+1}-1`)
         }else{
@@ -51,7 +52,7 @@ const MonthlyCalender = ({date})=>{
                 {
                     Array(7).fill(0).map((data, index)=>{
                         let wrongNum = false;
-                        let days = today.clone().startOf('year').week(week).startOf('week').add(index, 'day');
+                        let days = specific.clone().startOf('year').week(week).startOf('week').add(index, 'day');
                         if((week === firstWeek && parseInt(days.format('D'))>8)||(week===lastWeek && parseInt(days.format('D'))<24)){
                             wrongNum = true;
                         }

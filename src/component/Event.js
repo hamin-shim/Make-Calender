@@ -8,7 +8,6 @@ export default ({pathDate})=>{
             correctEvent.push(data)
         }
     })
-    console.log(correctEvent);
     return(
         <div>
             {correctEvent.map(data=>{
