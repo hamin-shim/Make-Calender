@@ -9,7 +9,7 @@ import { authService } from "./fbase";
 import { firestore } from "./fbase";
 import Search from "./Search";
 import AppRouter from "./Router";
-
+import Auth from "../routes/Auth"
 function App() {
   return (
     <div className="App">
@@ -25,6 +25,9 @@ function App() {
       </Route>
       <Route path="/search">
         <Search/>
+      </Route>
+      <Route path="/auth">
+        <Auth/>
       </Route>
     </div>
   );
