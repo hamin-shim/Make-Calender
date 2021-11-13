@@ -4,16 +4,22 @@
 .row{
     justify-content: center;
 }
+.monthScreen{
+    height: 1400px;
+}
 .make{
     margin: 20px;
-    padding: 10px;
-    padding-bottom: 20px;
-    border-radius: 10px;
-    background-color: rgba(101, 101, 230, 0.3);
+    
     input{
         width: 100%;
     }
     .description{
         width: 100%;
+    }
+    form{
+        background-color: rgba(101, 101, 230, 0.3);
+        padding: 10px;
+        padding-bottom: 20px;
+        border-radius: 10px;
     }
 }

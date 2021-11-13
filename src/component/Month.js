@@ -4,10 +4,10 @@ import { useParams } from "react-router"
 const Month = ()=>{
     const {id} = useParams();
     return(
-        <div className="container">
+        <div className="container monthScreen">
             <div className="row">
         <MonthlyCalender date={id}/>
-        <div className="col-lg-3 col-md-4 col-6 make">
+        <div className="col-lg-3 col-md-6 col-8 make">
             <form>
                 <label for = "date">일자</label>
                 <input name = "date" type="date" placeholder="2000-00-00"/>

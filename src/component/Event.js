@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import EventData from "../data/Event"
+import EventData from "../data/eventlist"
 import "../style/modal.scss"
 export default ({pathDate})=>{
     let correctEvent = []

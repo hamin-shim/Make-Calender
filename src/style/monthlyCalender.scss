@@ -1,3 +1,4 @@
+@import "./variables";
 .wrap{
     width: 100%;
 }
@@ -37,6 +38,10 @@ main{
                 .eventExist{
                     color: red;
                 }
+                font-size: $font-default;
+                @media (max-width: 450px) {
+                    font-size: $font-small-mid;
+                }
             }
             .word{
                 border-top: 0px;
@@ -68,4 +73,18 @@ main{
     height: 300px;
     background-color: blanchedalmond;
     overflow: hidden;
+}
+main{
+    .control{
+        font-size: $font-medium;
+        @media (max-width: 450px) {
+            font-size: $font-default;
+        }
+    }
+    button{
+        font-size: $font-default!important;
+        @media (max-width: 450px) {
+            font-size: $font-small!important;
+        }
+    }
 }

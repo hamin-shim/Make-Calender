@@ -3,13 +3,25 @@ import moment from 'moment'
 import "../style/monthlyCalender.scss"
 import { useHistory } from "react-router";
 import Modal from "./Modal";
+import EventData from "../data/eventlist"
+
 const MonthlyCalender = ({date})=>{
     let split = date.split("-")
-    let year = split[0]
-    let month = split[1]
+    let year = split[0];
+    let month = split[1];
     const [specific,setSpecific] = useState(moment(date));
     const [getMoment, setMoment] = useState(moment());
     const [toggle, setToggle] = useState(false);
+    const [isEventExist, setIsEventExist] = useState(false);
+    const checkEvent = (checkDate)=>{
+        let cnt=0;
+        EventData.map((day)=>{
+            if(day.date===checkDate){
+                cnt++;
+            }
+        })
+        return(cnt)
+    }
     const history = useHistory();
     const today = getMoment;
     const firstWeek = specific.clone().startOf('month').week();
@@ -26,19 +38,19 @@ const MonthlyCalender = ({date})=>{
         }
     }
     const onMonthSubtracter = ()=>{
-        setSpecific(specific.subtract(1,'month'))
-        if(month===1){
-            history.push(`/month/${year-1}-12`)
+        setSpecific(specific.clone().subtract(1,'month'))
+        if(parseInt(month)===1){
+            history.push(`/month/${parseInt(year)-1}-12`)
         }else{
-            history.push(`/month/${year}-${month-1}`)
+            history.push(`/month/${year}-${parseInt(month)-1}`)
         }
     }
     const onMonthAdder = ()=>{
-        setSpecific(specific.add(1,'month'))
-        if(month===12){
-            history.push(`/month/${year+1}-1`)
+        setSpecific(specific.clone().add(1,'month'))
+        if(parseInt(month)===12){
+            history.push(`/month/${parseInt(year)+1}-1`)
         }else{
-            history.push(`/month/${year}-${month+1}`)
+            history.push(`/month/${year}-${parseInt(month)+1}`)
         }
     }
     const onToggleClick = ()=>{
@@ -58,7 +70,7 @@ const MonthlyCalender = ({date})=>{
                         }
                         return (<>
                             <div onClick={onClickHandler} className = {`${parseInt(days.format('D'))} ${wrongNum} day`} key={index}>{(wrongNum) ? null : days.format('D')}
-                            {wrongNum ? null : <span className="eventExist">˚</span>}
+                            {checkEvent(`${year}-${month}-${parseInt(days.format('D'))}`)&&!wrongNum ? <span className="eventExist">˚</span> : null}
                             </div>
                             </>
                         )
