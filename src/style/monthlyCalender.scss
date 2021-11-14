@@ -66,25 +66,41 @@ main{
     height: 30px!important;
 }
 .hiddenSpecific{
-    height: 0px!important;
+    // height: 0px!important;
+    display: none;
 }
 .specific{
     width: 80%;
-    height: 300px;
-    background-color: blanchedalmond;
+    // background-color: blanchedalmond;
+    background-color: #f9ca24;
+    // transition: height 0.4s;
     overflow: hidden;
+    border-radius: 20px;
+    padding: 20px;
 }
 main{
     .control{
+        .btn{
+            color:rgb(101, 101, 230);
+            border-color: rgb(101, 101, 230);
+        }
+        .btn:hover,
+        .btn:active,
+        .btn:focus,
+        .btn.active {
+        background: rgb(101, 101, 230);
+        color: #ffffff;
+        border-color: rgb(101, 101, 230);
+        }
         font-size: $font-medium;
         @media (max-width: 450px) {
             font-size: $font-default;
         }
-    }
-    button{
-        font-size: $font-default!important;
-        @media (max-width: 450px) {
-            font-size: $font-small!important;
+        button{
+            font-size: $font-default!important;
+            @media (max-width: 450px) {
+                font-size: $font-small!important;
+            }
         }
     }
 }

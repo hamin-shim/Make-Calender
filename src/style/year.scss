@@ -14,6 +14,18 @@
         justify-content: space-evenly;
         font-size: 30px;
         margin: 30px 0px;
+        .btn{
+            color:rgb(101, 101, 230);
+            border-color: rgb(101, 101, 230);
+        }
+        .btn:hover,
+        .btn:active,
+        .btn:focus,
+        .btn.active {
+        background: rgb(101, 101, 230);
+        color: #ffffff;
+        border-color: rgb(101, 101, 230);
+        }
     }
     .monthLab{
         width: 100%;

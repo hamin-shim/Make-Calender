@@ -65,7 +65,7 @@ const MonthlyCalender = ({date})=>{
                     Array(7).fill(0).map((data, index)=>{
                         let wrongNum = false;
                         let days = specific.clone().startOf('year').week(week).startOf('week').add(index, 'day');
-                        if((week === firstWeek && parseInt(days.format('D'))>8)||(week===lastWeek && parseInt(days.format('D'))<24)){
+                        if((week === firstWeek && parseInt(days.format('D'))>8)||(week===lastWeek && parseInt(days.format('D'))<8)){
                             wrongNum = true;
                         }
                         return (<>

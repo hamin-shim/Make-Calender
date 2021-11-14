@@ -1,6 +1,49 @@
+@import "./variables";
+.wholeEvent{
+    h1{
+        font-size: $font-large;
+    }
+    hr{
+        margin-top: 5px;
+    }
+}
 .event{
     .title{
-        font-size: 30px;
-        color: blue;
+        font-size: $font-medium;
+        font-weight: 500;
+        @media (max-width: 400px) {
+            font-size: $font-default;
+        }
     }
+    .time{
+        padding: 10px 0;
+        font-style: italic;
+    }
+    .description{
+        margin-bottom: 10px;
+    }
+    @media (max-width: 400px) {
+        font-size: $font-small-mid;
+        .description{
+            font-size: $font-small;
+        }
+    }
+    margin-bottom: 20px;
+    border-radius: 20px;
+    padding: 20px;
+    border: 2px solid rgba(0,0,0,0.1);
+    .editAndDelete{
+        button{
+            font-size: $font-small-mid;
+            margin-right: 20px;
+        }
+    }
+}
+.editEvent{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.hidden{
+    display: none;
 }

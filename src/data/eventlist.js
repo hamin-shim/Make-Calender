@@ -63,6 +63,15 @@ export default Event = [
         creatorId: "하민"
     },
     {
+        date:"2021-11-30",
+        time_start: 9,
+        time_end: 13,
+        title:"11월 마지막 날",
+        tag: ["december", "first"],
+        description: "딱히없음",
+        creatorId: "하민"
+    },
+    {
         date:"2021-11-29",
         time_start: 9,
         time_end: 24,

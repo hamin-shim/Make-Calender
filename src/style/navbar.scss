@@ -2,6 +2,18 @@
 .menuBar{
     padding: 2vh;
     border-bottom: 2px solid rgba(0,0,0,0.2);
+    .btn{
+        color:rgb(101, 101, 230);
+        border-color: rgb(101, 101, 230);
+    }
+    .btn:hover,
+    .btn:active,
+    .btn:focus,
+    .btn.active {
+    background: rgb(101, 101, 230);
+    color: #ffffff;
+    border-color: rgb(101, 101, 230);
+    }
 }
 .center{
     align-items: center;
@@ -9,6 +21,7 @@
 .logo{
     h3{
         font-size: $font-medium;
+        margin-bottom: 0;
     @media (max-width: 400px) {
         font-size: $font-default;
     }
