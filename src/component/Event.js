@@ -15,6 +15,8 @@ export default ({pathDate})=>{
                     <div className="title">{data.title}</div>
                     <div className="time">{data.time_start}~{data.time_end}</div>
                     <div className="description">{data.description}</div>
+                    <button className="btn btn-primary">수정하기</button>
+                    <button className="btn btn-primary">삭제하기</button>
                 </div>)
             })}
         </div>
