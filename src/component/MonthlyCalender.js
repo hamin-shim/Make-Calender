@@ -9,10 +9,12 @@ const MonthlyCalender = ({date})=>{
     let split = date.split("-")
     let year = split[0];
     let month = split[1];
+    month = month.padStart(2,0);
     const [specific,setSpecific] = useState(moment(date));
     const [getMoment, setMoment] = useState(moment());
     const [toggle, setToggle] = useState(false);
     const [isEventExist, setIsEventExist] = useState(false);
+
     const checkEvent = (checkDate)=>{
         let cnt=0;
         EventData.map((day)=>{
@@ -33,7 +35,7 @@ const MonthlyCalender = ({date})=>{
         const isItDate = dayData[1];
         console.log(day, isItDate)
         if(isItDate==="false"){
-            history.push(`/month/${year}-${month}-${day}`)
+            history.push(`/month/${year}-${month}-${String(day).padStart(2,0)}`)
             setToggle(true)
         }
     }
@@ -42,7 +44,7 @@ const MonthlyCalender = ({date})=>{
         if(parseInt(month)===1){
             history.push(`/month/${parseInt(year)-1}-12`)
         }else{
-            history.push(`/month/${year}-${parseInt(month)-1}`)
+            history.push(`/month/${year}-${String(parseInt(month)-1).padStart(2,0)}`)
         }
     }
     const onMonthAdder = ()=>{
@@ -50,7 +52,7 @@ const MonthlyCalender = ({date})=>{
         if(parseInt(month)===12){
             history.push(`/month/${parseInt(year)+1}-1`)
         }else{
-            history.push(`/month/${year}-${parseInt(month)+1}`)
+            history.push(`/month/${year}-${String(parseInt(month)+1).padStart(2,0)}`)
         }
     }
     const onToggleClick = ()=>{

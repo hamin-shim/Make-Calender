@@ -1,7 +1,7 @@
 import MonthlyCalender from "./MonthlyCalender"
 import "../style/month.scss"
 import { useParams } from "react-router"
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { firestore } from "./fbase";
 
 const Month = ()=>{
@@ -68,7 +68,14 @@ const Month = ()=>{
         } = event;
         setDescription(value);
     };
-
+    useEffect(()=>{
+        // console.log(date)
+        // console.log(start_time)
+        // console.log(end_time)
+        // console.log(title)
+        // console.log(tag)
+        // console.log(description)
+    })
 
     return(
         <div className="container monthScreen">

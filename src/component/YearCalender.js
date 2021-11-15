@@ -53,7 +53,7 @@ export default ()=>{
             <div className="monthLab container-fluid">
                 <div className="row">
             {monthArray.map((month,i)=>(
-                <div onClick={onClick} className={`month ${year.format('YYYY')}-${i+1} col-lg-3 col-md-4 col-5`}>
+                <div onClick={onClick} className={`month ${year.format('YYYY')}-${String(i+1).padStart(2,0)} col-lg-3 col-md-4 col-5`}>
                     <h1>{i+1}월</h1>
                     <div className="week dayName">
                             <div className="day sun">S</div>
