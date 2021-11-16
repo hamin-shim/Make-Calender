@@ -7,8 +7,12 @@ const Auth = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [newAccount, setNewAccount] = useState(false);
+    const [preview, setPreview] = useState(false)
     const history = useHistory();
-    const [error, setError] = useState("");
+    const [error, setError] = useState();
+    // if(error){
+    //     alert(error)
+    // }
     const onChange = (event) => {
         const {target: { name, value },
         }=event;
@@ -19,6 +23,9 @@ const Auth = () => {
         }
     };
     const toggleAccount = () => setNewAccount((prev) => !prev);
+    const onPreview = (e)=>{
+        setPreview(prev=>!prev)
+    }
     const onSocialClick = async (event) => {
         const {target:{name},
         } = event;
@@ -46,15 +53,20 @@ const Auth = () => {
             history.push("/")
         } catch (error){
             setError(error.message);
+            alert(error.message)
+        }finally{
+            setError(null)
         }
     };
     
     return(
         <div className="auth">
         <div className="container">
-            <span onClick={toggleAccount}>{newAccount ? "Log in" : "Create Account"}</span>
+            <h1>Calender: 
+                <h2>Make your own Calender</h2>
+            </h1>
             <form onSubmit={onSubmit}>
-                <input 
+                <input className="email"
                     name="email"
                     type="email" 
                     placeholder="Email" 
@@ -62,7 +74,7 @@ const Auth = () => {
                     value={email}
                     onChange={onChange}
                     />
-                <input 
+                <input className="password"
                     name="password"
                     type="password" 
                     placeholder="Password" 
@@ -70,11 +82,12 @@ const Auth = () => {
                     value={password}
                     onChange={onChange}
                     />
-                <input type="submit" value={newAccount ? "Create new Account":"Log In" } />
-                {error}
+                <input className="btn btn-outline-primary btn-sm submit" type="submit" value={newAccount ? "Sign in":"Log In" } />
+                <div className = "btn btn-outline-primary change btn-small" onClick={toggleAccount} onMouseEnter={onPreview} onMouseLeave={onPreview}>Change to 
+                {newAccount ? " Log in" : " Create Account"}? </div>
             </form>
             <div>
-                <button onClick={onSocialClick} name="google">Continue with Google</button>
+                <button onClick={onSocialClick} name="google" className="btn btn-outline-primary btn-small google" >or Continue with Google</button>
             </div>
         </div>
     </div>

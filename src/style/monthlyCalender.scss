@@ -48,8 +48,9 @@ main{
             }
             .false{
                 &:hover{
-                    background-color: gray;
-                    color: white;
+                    background-color: rgb(190, 190, 235);
+                    color: whitesmoke;
+                    transition: background-color 0.4s;
                 }
             }
             .sun{

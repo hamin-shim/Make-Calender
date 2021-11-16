@@ -1,18 +1,71 @@
-.auth{
+@import "./variables";
 
+.auth{
     .container{
-        background-color: rgb(162, 162, 224);
+        // background-color: rgb(198, 198, 230);
+        h1{
+            color:rgb(101, 101, 230);
+        }
+        margin-top: 50px;
         width: 100%;
-        height: 500px;
+        height: 1000px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
         form{
-            display: flex;
-            flex-direction: column;
+            @media (max-width: 450px) {
+                width: 300px;
+                font-size: $font-small-mid;
+                .submit, .change{
+                    font-size: $font-small!important;
+                }
+            }
+            display: grid;
+            grid-template-columns: 60% 15% 15%;
+            grid-gap: 10px;
+            grid-template-rows: 50% 50%;
             justify-content: center;
             align-items: center;
+            width: 500px;
+            height: 100px;
+            align-items: stretch;
+            font-size: $font-default;
+            margin-bottom: 30px;
+            input{
+                width: 100%;
+                height: 100%;
+                margin-bottom: 15px;
+            }
+            .password{
+                grid-row: 2/3;
+            }
+            .submit{
+                grid-column: 2/3;
+                grid-row: 1/3;
+            }
+            .change{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                grid-column: 3/4;
+                grid-row: 1/3;
+                font-size: $font-small-mid;
+            }
+        }
+        .google{
+            font-size: $font-default;
+        }
+        .btn{
+            color:rgb(101, 101, 230);
+            border-color: rgb(101, 101, 230);
+        }
+        .btn:hover,
+        .btn:active,
+        .btn:focus,
+        .btn.active {
+        background: rgb(101, 101, 230);
+        color: #ffffff;
+        border-color: rgb(101, 101, 230);
         }
     }
 }
