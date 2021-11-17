@@ -1,0 +1,14 @@
+.search{
+    width: 100%;
+    height: 1000px;
+    form{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .searchBar{
+            display: flex;
+            width: 50%;
+        }
+
+    }
+}
