@@ -4,8 +4,9 @@ import "../style/monthlyCalender.scss"
 import { useHistory } from "react-router";
 import Modal from "./Modal";
 import EventData from "../data/eventlist"
+import { firestore } from "./fbase";
 
-const MonthlyCalender = ({date})=>{
+const MonthlyCalender = ({date, userObject})=>{
     let split = date.split("-")
     let year = split[0];
     let month = split[1];
@@ -15,9 +16,33 @@ const MonthlyCalender = ({date})=>{
     const [toggle, setToggle] = useState(false);
     const [isEventExist, setIsEventExist] = useState(false);
 
+    const [events, setEvents] = useState([]);
+
+    // const getEvents = async () => {
+    //     const dbEvents = await firestore.collection("events").get();
+    //     dbEvents.forEach((document) => {
+    //         const EventObject = {
+    //             ...document.data(),
+    //             id: document.id,
+    //         };
+    //         setEvents((prev) => [EventObject, ...prev]);
+    //     });
+    // }
+
+    useEffect(() => {
+        // getEvents();
+        firestore.collection("events").onSnapshot(snapshot => {
+            const eventArray = snapshot.docs.map(doc => ({
+                id:doc.id,
+                ...doc.data()
+            }));
+            setEvents(eventArray);
+        });
+    }, []);
+
     const checkEvent = (checkDate)=>{
         let cnt=0;
-        EventData.map((day)=>{
+        events.map((day)=>{
             if(day.date===checkDate){
                 cnt++;
             }
@@ -105,7 +130,7 @@ const MonthlyCalender = ({date})=>{
 
                     <div className=
                     {`specific ${toggle ? null : "hiddenSpecific"}`}>
-                    <Modal />
+                    <Modal userObject={userObject}/>
                     </div>
                 </main>
         </div>
