@@ -54,7 +54,7 @@ const MonthlyCalender = ({date, userObject, events})=>{
     //     return(cnt)
     // }
     const checkEvent = (checkDate)=>{
-        let isOwner = true;
+        let isOwner = false;
         let cnt=0;
         events.map((day)=>{
             // if(userObject){
