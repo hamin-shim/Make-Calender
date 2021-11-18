@@ -114,7 +114,7 @@ const Month = ({ userObject }) => {
     return(
         <div className="container monthScreen">
             <div className="row">
-        <MonthlyCalender date={id} userObject={userObject}/>
+        <MonthlyCalender date={id} userObject={userObject} events={events}/>
         <div className="col-lg-3 col-md-6 col-8 make">
             <form onSubmit = {onSubmit}>
                 <label for = "date">일자</label>
@@ -131,11 +131,11 @@ const Month = ({ userObject }) => {
                 <textarea value={description} onChange={onChangeDescription} name = "description" className="description" placeholder="어떤 일정인가요?" cols="50" rows="5"/>
                 <input type="submit" value="Register" />
             </form>
-            <div>
+            {/* <div>
                 {events.map((event) => (
                     <Events key={event.id} EventObject={event} isOwner={true} />//이부분 ture를 event.creatorId === userObject.uid로 바꿔야됨... 고민중
                     ))}
-            </div>
+            </div> */}
         </div>
         </div>
         </div>

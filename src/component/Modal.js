@@ -6,13 +6,13 @@ import {firestore} from "./fbase"
 import {userObject} from "./App"
 
 
-export default ({userObject})=>{
+export default ({userObject, events})=>{
     const {id:pathDate} = useParams();
     const dateData = pathDate.split("-");
     let correctEvent = []
 
 
-    const [events, setEvents] = useState([]);
+    // const [events, setEvents] = useState([]);
 
     // const getEvents = async () => {
     //     const dbEvents = await firestore.collection("events").get();
@@ -25,16 +25,16 @@ export default ({userObject})=>{
     //     });
     // }
 
-    useEffect(() => {
-        // getEvents();
-        firestore.collection("events").onSnapshot(snapshot => {
-            const eventArray = snapshot.docs.map(doc => ({
-                id:doc.id,
-                ...doc.data()
-            }));
-            setEvents(eventArray);
-        });
-    }, []);
+    // useEffect(() => {
+    //     // getEvents();
+    //     firestore.collection("events").onSnapshot(snapshot => {
+    //         const eventArray = snapshot.docs.map(doc => ({
+    //             id:doc.id,
+    //             ...doc.data()
+    //         }));
+    //         setEvents(eventArray);
+    //     });
+    // }, []);
 
     
     //이 부분 수정해야할듯 EventData를 Events(firestore 데이터)로 바꿔야할듯
