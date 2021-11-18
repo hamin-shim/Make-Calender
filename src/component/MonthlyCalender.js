@@ -38,6 +38,7 @@ const MonthlyCalender = ({date, userObject})=>{
             }));
             setEvents(eventArray);
         });
+        console.log(events)
     }, []);
 
     const checkEvent = (checkDate)=>{

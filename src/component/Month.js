@@ -33,11 +33,11 @@ const Month = ({ userObject }) => {
     useEffect(() => {
         // getEvents();
         firestore.collection("events").onSnapshot(snapshot => {
-            const eventArray = snapshot.docs.map(doc => ({
+            const eventArray = snapshot.docs.map((doc) => ({
                 id:doc.id,
                 ...doc.data()
             }));
-            setEvents(eventArray);
+            // setEvents(eventArray)
         });
     }, []);
 

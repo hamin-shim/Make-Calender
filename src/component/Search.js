@@ -5,21 +5,32 @@ import "../style/search.scss";
 import Result from "./Result";
 function Search(){
     const [searchWhat, setSearchWhat] = useState(null);
-    const [result, setResult] = useState(null);
+    const [keyWord, setKeyWord] = useState(null)
+    const [result, setResult] = useState([]);
     const onSubmit = (e)=>{
         e.preventDefault();
-        setResult(searchWhat)
+        setKeyWord(searchWhat)
     }
-    const searchResult = ()=>{
-        Event.map((event)=>{
-        console.log(event)
-    })}
+    const searchResult = (keyWord)=>{
+        let includedData = []
+        Event.map((eve)=>{
+        if(eve.creatorId==="hamin"){
+            if((eve.title.includes(keyWord))|| //title에 포함되거나
+            eve.description.includes(keyWord)|| //description에 포함되거나
+            (eve.date.includes(keyWord)|| //date에 포함되어 있거나
+            (eve.tag.includes(keyWord)))){ //tag array에 포함되어 있거나
+                console.log(eve.title+"는 갖고 있어요"+keyWord)
+                includedData.push(eve)
+            }
+        }
+        })
+        setResult(includedData)
+    }
     useEffect(()=>{
-        searchResult()
-    })
+        searchResult(keyWord)
+    },[keyWord])
     return(
-        <div className="search">
-        <h1>검색 기능</h1>
+        <div className="search mt-5" >
         <form onSubmit={onSubmit}>
             <div className="searchBar">
             <input className="form-control" type="text" value={searchWhat} onChange={(e)=>{
