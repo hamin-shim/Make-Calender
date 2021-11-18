@@ -10,9 +10,14 @@ export default ({userObject, events})=>{
     const dateData = pathDate.split("-");
     let correctEvent = []
     
-    //이 부분 수정해야할듯 EventData를 Events(firestore 데이터)로 바꿔야할듯
+
+
     events.map((data)=>{
-        if(data.date === pathDate&& data.creatorId===userObject.uid){
+        let isOwner = false;
+        if(userObject){
+            isOwner = data.creatorId === userObject.uid
+        }
+        if(data.date === pathDate&& isOwner){
             correctEvent.push(data)
         }
     })
