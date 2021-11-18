@@ -14,7 +14,7 @@ export default ({data, userObject})=>{
     }
 
     
-    let isOwner = true;
+    let isOwner = false;
     if(userObject){
         isOwner = data.creatorId === userObject.uid
     }
