@@ -12,15 +12,10 @@ export default ({data, userObject})=>{
             return typeof(args[num]) != undefined ? args[num] : match;
         });
     }
-
-    
     let isOwner = false;
     if(userObject){
         isOwner = data.creatorId === userObject.uid
     }
-    console.log(userObject)
-    console.log(data.creatorId)
-    // console.log(data.creatorId === userObject.uid)
 
     const [toggle, setToggle] = useState(false)
 
@@ -85,7 +80,6 @@ export default ({data, userObject})=>{
     const onDeleteClick = async ()=>{
         const ok = window.confirm("정말 삭제하시겠습니까?")
         if(ok){
-            //delete
             console.log(data.id)
             await firestore.doc(String.format("events/{0}",data.id)).delete();
 
@@ -96,8 +90,6 @@ export default ({data, userObject})=>{
         }
     }
 
-
-    
     return(
         <div className="event">
             {isOwner && (

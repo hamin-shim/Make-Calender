@@ -6,7 +6,7 @@ import Month from "./Month";
 import Navbar from "./Navbar";
 import Search from "./Search";
 
-export default ({isLoggedIn, userObject}) => {
+export default ({isLoggedIn, userObject, events}) => {
     return(
         <>
         <Navbar isLoggedIn={isLoggedIn}/>
@@ -17,10 +17,10 @@ export default ({isLoggedIn, userObject}) => {
         <Home/>
       </Route>
       <Route path="/month/:id">
-        <Month userObject={userObject} />
+        <Month userObject={userObject} events={events} />
       </Route>
       <Route path="/search">
-        <Search/>
+        <Search userObject={userObject} events={events}/>
       </Route>
       <Route path="/auth">
         <Auth/>

@@ -7,6 +7,7 @@ function App() {
   const [init, setInit] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [userObject, setUserObject] = useState(null)
+  const [events, setEvents] = useState([]);
   useEffect(()=>{
     authService.onAuthStateChanged((user)=>{
       if(user){
@@ -18,11 +19,18 @@ function App() {
       }
       setInit(true)
     })
+    firestore.collection("events").onSnapshot(snapshot => {
+        const eventArray = snapshot.docs.map((doc) => ({
+            id:doc.id,
+            ...doc.data()
+        }));
+        setEvents(eventArray)
+      });
   },[])
   return (
     <div className="App">
       {init ? (
-      <AppRouter isLoggedIn={isLoggedIn} userObject={userObject}/>
+      <AppRouter isLoggedIn={isLoggedIn} userObject={userObject} events={events}/>
       ) : (
         "initializing..."
       )}

@@ -17,60 +17,18 @@ const MonthlyCalender = ({date, userObject, events})=>{
     const [getMoment, setMoment] = useState(moment());
     const [toggle, setToggle] = useState(false);
     const [isEventExist, setIsEventExist] = useState(false);
-
-
-
-    // const [events, setEvents] = useState([]);
-
-    // const getEvents = async () => {
-    //     const dbEvents = await firestore.collection("events").get();
-    //     dbEvents.forEach((document) => {
-    //         const EventObject = {
-    //             ...document.data(),
-    //             id: document.id,
-    //         };
-    //         setEvents((prev) => [EventObject, ...prev]);
-    //     });
-    // }
-
-    // useEffect(() => {
-    //     // getEvents();
-    //     firestore.collection("events").onSnapshot(snapshot => {
-    //         const eventArray = snapshot.docs.map(doc => ({
-    //             id:doc.id,
-    //             ...doc.data()
-    //         }));
-    //         setEvents(eventArray);
-    //     });
-    // }, []);
-
-    // const checkEvent = (checkDate)=>{
-    //     let cnt=0;
-    //     events.map((day)=>{
-    //         if(day.date===checkDate){
-    //             cnt++;
-    //         }
-    //     })
-    //     return(cnt)
-    // }
     const checkEvent = (checkDate)=>{
         let isOwner = false;
         let cnt=0;
         events.map((day)=>{
-            // if(userObject){
-            //     isOwner = day.creatorId===userObject.uid;
-            //     console.log(day.date)
-            //     console.log(isOwner)
-            //     console.log(day.creatorId)
-            // }
-            if(day.date===checkDate){
-                cnt++;
-                if(userObject){
-                    isOwner = day.creatorId===userObject.uid;
+            if(userObject&&userObject.uid===day.creatorId){
+                if(day.date===checkDate){
+                    cnt++;
                 }
+                isOwner = day.creatorId===userObject.uid;
             }
         })
-        return (isOwner&cnt);
+        return (cnt);
     }
     const history = useHistory();
     const today = getMoment;
@@ -118,9 +76,6 @@ const MonthlyCalender = ({date, userObject, events})=>{
                         if((week === firstWeek && parseInt(days.format('D'))>8)||(week===lastWeek && parseInt(days.format('D'))<8)){
                             wrongNum = true;
                         }
-
-                        // console.log(parseInt(days.format('D')))
-                        // console.log(checkEvent(`${year}-${month}-${parseInt(days.format('D'))}`))
 
                         return (<>
                             <div onClick={onClickHandler} className = {`${parseInt(days.format('D'))} ${wrongNum} day`} key={index}>{(wrongNum) ? null : days.format('D')}

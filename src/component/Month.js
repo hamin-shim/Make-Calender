@@ -3,44 +3,16 @@ import "../style/month.scss"
 import { useParams } from "react-router"
 import React, { useEffect, useState } from "react";
 import { firestore } from "./fbase";
-import Events from "./Events"
+import Event from "./Event";
 
-const Month = ({ userObject }) => {
-    // console.log(userObject);
+const Month = ({ userObject, events }) => {
     const {id} = useParams();
-    
-
     const [date, setDate] = useState("");
     const [time_start, setTime_start] = useState("");
     const [time_end, setTime_end] = useState("");
     const [title, setTitle] = useState("");
     const [tag, setTag] = useState("");
     const [description, setDescription] = useState("");
-
-    const [events, setEvents] = useState([]);
-
-    // const getEvents = async () => {
-    //     const dbEvents = await firestore.collection("events").get();
-    //     dbEvents.forEach((document) => {
-    //         const EventObject = {
-    //             ...document.data(),
-    //             id: document.id,
-    //         };
-    //         setEvents((prev) => [EventObject, ...prev]);
-    //     });
-    // }
-    
-    useEffect(() => {
-        // getEvents();
-        firestore.collection("events").onSnapshot(snapshot => {
-            const eventArray = snapshot.docs.map((doc) => ({
-                id:doc.id,
-                ...doc.data()
-            }));
-            // setEvents(eventArray)
-        });
-    }, []);
-
 
     const onSubmit = (event) => {
         event.preventDefault();
@@ -97,20 +69,6 @@ const Month = ({ userObject }) => {
         } = event;
         setDescription(value);
     };
-    useEffect(()=>{
-
-        // console.log(date)
-        // console.log(start_time)
-        // console.log(end_time)
-        // console.log(title)
-        // console.log(tag)
-        // console.log(description)
-    })
-
-    // console.log("hi");
-    // console.log(events);
-    // console.log("end");
-
     return(
         <div className="container monthScreen">
             <div className="row">
@@ -133,7 +91,7 @@ const Month = ({ userObject }) => {
             </form>
             {/* <div>
                 {events.map((event) => (
-                    <Events key={event.id} EventObject={event} isOwner={true} />//이부분 ture를 event.creatorId === userObject.uid로 바꿔야됨... 고민중
+                    <Event key={event.id} data={event} userObject={userObject} />//이부분 ture를 event.creatorId === userObject.uid로 바꿔야됨... 고민중
                     ))}
             </div> */}
         </div>
