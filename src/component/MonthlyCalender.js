@@ -10,11 +10,15 @@ const MonthlyCalender = ({date, userObject, events})=>{
     let split = date.split("-")
     let year = split[0];
     let month = split[1];
+    let isOwner = true;
+
     month = month.padStart(2,0);
     const [specific,setSpecific] = useState(moment(date));
     const [getMoment, setMoment] = useState(moment());
     const [toggle, setToggle] = useState(false);
     const [isEventExist, setIsEventExist] = useState(false);
+
+
 
     // const [events, setEvents] = useState([]);
 
@@ -40,14 +44,33 @@ const MonthlyCalender = ({date, userObject, events})=>{
     //     });
     // }, []);
 
+    // const checkEvent = (checkDate)=>{
+    //     let cnt=0;
+    //     events.map((day)=>{
+    //         if(day.date===checkDate){
+    //             cnt++;
+    //         }
+    //     })
+    //     return(cnt)
+    // }
     const checkEvent = (checkDate)=>{
+        let isOwner = true;
         let cnt=0;
         events.map((day)=>{
+            // if(userObject){
+            //     isOwner = day.creatorId===userObject.uid;
+            //     console.log(day.date)
+            //     console.log(isOwner)
+            //     console.log(day.creatorId)
+            // }
             if(day.date===checkDate){
                 cnt++;
+                if(userObject){
+                    isOwner = day.creatorId===userObject.uid;
+                }
             }
         })
-        return(cnt)
+        return (isOwner&cnt);
     }
     const history = useHistory();
     const today = getMoment;
@@ -95,6 +118,10 @@ const MonthlyCalender = ({date, userObject, events})=>{
                         if((week === firstWeek && parseInt(days.format('D'))>8)||(week===lastWeek && parseInt(days.format('D'))<8)){
                             wrongNum = true;
                         }
+
+                        // console.log(parseInt(days.format('D')))
+                        // console.log(checkEvent(`${year}-${month}-${parseInt(days.format('D'))}`))
+
                         return (<>
                             <div onClick={onClickHandler} className = {`${parseInt(days.format('D'))} ${wrongNum} day`} key={index}>{(wrongNum) ? null : days.format('D')}
                             {checkEvent(`${year}-${month}-${parseInt(days.format('D'))}`)&&!wrongNum ? <span className="eventExist">˚</span> : null}
@@ -106,6 +133,7 @@ const MonthlyCalender = ({date, userObject, events})=>{
         }
         return(result)
     }
+    // console.log(userObject.uid)
     return(
         <div className="col-lg-6 col-md-8 col-sm-10">
                 <main>

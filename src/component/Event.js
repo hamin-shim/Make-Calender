@@ -14,7 +14,10 @@ export default ({data, userObject})=>{
     }
 
     
-    const isOwner = true //true -> event.creatorId === userObject.uid
+    let isOwner = true;
+    if(userObject){
+        isOwner = data.creatorId === userObject.uid
+    }
     console.log(userObject)
     console.log(data.creatorId)
     // console.log(data.creatorId === userObject.uid)
