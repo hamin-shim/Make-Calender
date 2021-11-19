@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import "../style/modal.scss"
-import Month from "./Month"
 import { firestore } from "./fbase"
-export default ({data, userObject})=>{
+const Event = ({data, userObject})=>{
 
     String.format = function() { 
         let args = arguments;
@@ -58,8 +57,6 @@ export default ({data, userObject})=>{
     };
 
     const onEditClick = ()=>{
-
-        console.log("clicked")
         setToggle(prev=>!prev)
     }
     const onSubmit = async (event)=>{
@@ -100,13 +97,11 @@ export default ({data, userObject})=>{
     const onDeleteClick = async ()=>{
         const ok = window.confirm("정말 삭제하시겠습니까?")
         if(ok){
-            console.log(data.id)
             await firestore.doc(String.format("events/{0}",data.id)).delete();
 
             alert("일정이 삭제되었습니다")
         }
         else{
-            console.log("취소하셨습니다")
         }
     }
 
@@ -150,3 +145,4 @@ export default ({data, userObject})=>{
         </div>
     )
 }
+export default Event;

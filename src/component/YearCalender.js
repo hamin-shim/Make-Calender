@@ -7,7 +7,7 @@ export default ()=>{
     const thisYear = year;
     const history = useHistory();
     let firstMonth = thisYear.clone().startOf('year');
-    let lastMonth = thisYear.clone().endOf('year');
+    // let lastMonth = thisYear.clone().endOf('year');
     let monthArray = [];
     for(let i=0; i<12;i++){
         monthArray.push(firstMonth.clone().add(i,'month'))
@@ -15,7 +15,6 @@ export default ()=>{
     const onClick = (e)=>{
         const {nativeEvent:{path:{length}}} = e;
         const datePath = e.nativeEvent.path[length-11].className.substring(6,13);
-        console.log(datePath)
         history.push(`/month/${datePath}`)
     }
     const calendarArr = (month) => {
@@ -34,7 +33,7 @@ export default ()=>{
                                 wrongNum = true;
                             }
                             return(
-                                <div className={`day ${wrongNum} ${week, index}`} key={index}>{(wrongNum) ? null : days.format('D')}</div>
+                                <div className={`day ${wrongNum} ${week} ${index}`} key={index}>{(wrongNum) ? null : days.format('D')}</div>
                             )
                         })
                     }

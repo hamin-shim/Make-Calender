@@ -1,8 +1,7 @@
 import { useHistory } from "react-router"
 
-export default ({data})=>{
+const EachResult =  ({data})=>{
     const history = useHistory();
-
     return(
         <div onClick={()=>{
             history.push(`/month/${data.date}`)//클릭시 그 달 달력으로 이동. 
@@ -13,3 +12,4 @@ export default ({data})=>{
         </div>
     )
 }
+export default EachResult;

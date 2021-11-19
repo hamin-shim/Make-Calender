@@ -1,16 +1,12 @@
-import React, {useState, useEffect} from "react"
+import React from "react"
 import { useParams } from "react-router";
 import Event from "./Event"
-import {firestore} from "./fbase"
 
 
-export default ({userObject, events})=>{
+const Modal =  ({userObject, events})=>{
     const {id:pathDate} = useParams();
     const dateData = pathDate.split("-");
     let correctEvent = []
-    
-
-
     events.map((data)=>{
         let isOwner = false;
         if(userObject){
@@ -30,3 +26,4 @@ export default ({userObject, events})=>{
         </div>
     )
 }
+export default Modal;

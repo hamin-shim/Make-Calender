@@ -10,9 +10,7 @@ const Auth = () => {
     const [preview, setPreview] = useState(false)
     const history = useHistory();
     const [error, setError] = useState();
-    // if(error){
-    //     alert(error)
-    // }
+
     const onChange = (event) => {
         const {target: { name, value },
         }=event;
@@ -33,23 +31,20 @@ const Auth = () => {
         if(name === "google"){
             provider = new firebaseInstance.auth.GoogleAuthProvider();
         }
-        const data = await authService.signInWithPopup(provider);
-        console.log(data);
+        await authService.signInWithPopup(provider);
         history.push("/")
     };
     const onSubmit = async (event) => {
         event.preventDefault();
         try {
-            let data;
             if (newAccount) {
-                data = await authService.createUserWithEmailAndPassword(
+                await authService.createUserWithEmailAndPassword(
                     email,
                     password
                 );
             } else {
-                data = await authService.signInWithEmailAndPassword(email, password);
+                await authService.signInWithEmailAndPassword(email, password);
             }
-            console.log(data);
             history.push("/")
         } catch (error){
             setError(error.message);

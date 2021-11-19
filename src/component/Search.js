@@ -21,7 +21,6 @@ function Search({userObject, events}){
                 eve.description.includes(keyWord)|| //description에 포함되거나
                 (eve.date.includes(keyWord)|| //date에 포함되어 있거나
                 (eve.tag.includes(keyWord)))){ //tag array에 포함되어 있거나
-                    console.log(eve.title+"는 갖고 있어요"+keyWord)
                     includedData.push(eve)
                 }
             }

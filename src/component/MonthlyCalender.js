@@ -3,19 +3,15 @@ import moment from 'moment'
 import "../style/monthlyCalender.scss"
 import { useHistory } from "react-router";
 import Modal from "./Modal";
-import { firestore } from "./fbase";
 
 const MonthlyCalender = ({date, userObject, events})=>{
     let split = date.split("-")
     let year = split[0];
     let month = split[1];
-    let day = split[2];
 
     month = month.padStart(2,0);
     const [specific,setSpecific] = useState(moment(date));
-    const [getMoment, setMoment] = useState(moment());
     const [toggle, setToggle] = useState(false);
-    const [isEventExist, setIsEventExist] = useState(false);
     const checkEvent = (checkDate)=>{
         let cnt=0;
         events.map((day)=>{
@@ -31,7 +27,7 @@ const MonthlyCalender = ({date, userObject, events})=>{
         setSpecific(moment(date))
     },[date])
     const history = useHistory();
-    const today = getMoment;
+    const today = moment();
     const firstWeek = specific.clone().startOf('month').week();
     const lastWeek = specific.clone().endOf('month').week() === 1 ? 53 : specific.clone().endOf('month').week();
     const onClickHandler = (e)=>{
@@ -59,9 +55,6 @@ const MonthlyCalender = ({date, userObject, events})=>{
         }else{
             history.push(`/month/${year}-${String(parseInt(month)+1).padStart(2,0)}`)
         }
-    }
-    const onToggleClick = ()=>{
-        setToggle(prev=>!prev)
     }
     const onbackToCalenderClick = ()=>{
         setToggle(prev=>!prev)
@@ -91,7 +84,6 @@ const MonthlyCalender = ({date, userObject, events})=>{
         }
         return(result)
     }
-    // console.log(userObject.uid)
     return(
         <div className="col-lg-6 col-md-8 col-sm-10">
                 <main>
