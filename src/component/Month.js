@@ -16,22 +16,33 @@ const Month = ({ userObject, events }) => {
 
     const onSubmit = (event) => {
         event.preventDefault();
-        firestore.collection("events").add({
-            date,
-            time_start,
-            time_end,
-            title,
-            tag,
-            description,
-            createdAt: Date.now(),
-            creatorId: userObject.uid,
-        });
-        setDate("");
-        setTime_start("");
-        setTime_end("");
-        setTitle("");
-        setTag("");
-        setDescription("");
+        if(!date){
+            alert("날짜를 설정해주세요");
+        }
+        else if(!time_start || !time_end){
+            alert("시작시간과 끝시간을 모두 정해주세요");
+        }
+        else if(time_start >= time_end){
+            alert("시작시간과 끝시간을 확인해주세요");
+        }
+        else{
+            firestore.collection("events").add({
+                date,
+                time_start,
+                time_end,
+                title,
+                tag,
+                description,
+                createdAt: Date.now(),
+                creatorId: userObject.uid,
+            });
+            setDate("");
+            setTime_start("");
+            setTime_end("");
+            setTitle("");
+            setTag("");
+            setDescription("");
+        }
     };
     const onChangeDate = (event) => {
         const{

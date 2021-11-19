@@ -12,6 +12,7 @@ export default ({data, userObject})=>{
             return typeof(args[num]) != undefined ? args[num] : match;
         });
     }
+
     let isOwner = false;
     if(userObject){
         isOwner = data.creatorId === userObject.uid
@@ -64,16 +65,35 @@ export default ({data, userObject})=>{
     const onSubmit = async (event)=>{
         event.preventDefault();
 
-        await firestore.doc(String.format("events/{0}",data.id)).update({
-            time_start: newTime_start,
-            time_end: newTime_end,
-            title: newTitle,
-            tag: newTag,
-            description: newDescription,
-        });
+      
+        if(!newTime_start && !newTime_end){
+            await firestore.doc(String.format("events/{0}",data.id)).update({
+                title: newTitle,
+                tag: newTag,
+                description: newDescription,
+            });
+            setToggle(false);
+        }
+        else if(!newTime_start || !newTime_end){
+            alert("시작시간과 끝시간을 모두 정해주세요");
+        }
+        else if(newTime_start >= newTime_end){
+            alert("시작시간과 끝시간을 확인해주세요");
+        }
+        else{
+            await firestore.doc(String.format("events/{0}",data.id)).update({
+                time_start: newTime_start,
+                time_end: newTime_end,
+                title: newTitle,
+                tag: newTag,
+                description: newDescription,
+            });
+            setToggle(false);
+        }
 
-        setToggle(false);
     }
+
+
     const onCancelClick = ()=>{
         setToggle(false)
     }

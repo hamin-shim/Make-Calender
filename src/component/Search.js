@@ -3,7 +3,7 @@ import eventlist from "../data/eventlist";
 import Event from "../data/eventlist";
 import "../style/search.scss";
 import Result from "./Result";
-function Search(){
+function Search({userObject, events}){
     const [searchWhat, setSearchWhat] = useState(null);
     const [keyWord, setKeyWord] = useState(null)
     const [result, setResult] = useState([]);
@@ -13,8 +13,8 @@ function Search(){
     }
     const searchResult = (keyWord)=>{
         let includedData = []
-        Event.map((eve)=>{
-        if(eve.creatorId==="hamin"){
+        events.map((eve)=>{
+        if(eve.creatorId===userObject.uid){
             if((eve.title.includes(keyWord))|| //title에 포함되거나
             eve.description.includes(keyWord)|| //description에 포함되거나
             (eve.date.includes(keyWord)|| //date에 포함되어 있거나
