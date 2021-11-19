@@ -3,7 +3,6 @@ import "../style/month.scss"
 import { useParams } from "react-router"
 import React, { useEffect, useState } from "react";
 import { firestore } from "./fbase";
-import Event from "./Event";
 
 const Month = ({ userObject, events }) => {
     const {id} = useParams();
@@ -13,7 +12,6 @@ const Month = ({ userObject, events }) => {
     const [title, setTitle] = useState("");
     const [tag, setTag] = useState("");
     const [description, setDescription] = useState("");
-
     const onSubmit = (event) => {
         event.preventDefault();
         firestore.collection("events").add({
