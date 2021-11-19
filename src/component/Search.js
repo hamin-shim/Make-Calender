@@ -13,17 +13,22 @@ function Search({userObject, events}){
     }
     const searchResult = (keyWord)=>{
         let includedData = []
-        events.map((eve)=>{
-        if(eve.creatorId===userObject.uid){
-            if((eve.title.includes(keyWord))|| //title에 포함되거나
-            eve.description.includes(keyWord)|| //description에 포함되거나
-            (eve.date.includes(keyWord)|| //date에 포함되어 있거나
-            (eve.tag.includes(keyWord)))){ //tag array에 포함되어 있거나
-                console.log(eve.title+"는 갖고 있어요"+keyWord)
-                includedData.push(eve)
-            }
+        if(userObject){
+            alert("로그인 해주세요")
         }
-        })
+        else{
+            events.map((eve)=>{
+            if(eve.creatorId===userObject.uid){
+                if((eve.title.includes(keyWord))|| //title에 포함되거나
+                eve.description.includes(keyWord)|| //description에 포함되거나
+                (eve.date.includes(keyWord)|| //date에 포함되어 있거나
+                (eve.tag.includes(keyWord)))){ //tag array에 포함되어 있거나
+                    console.log(eve.title+"는 갖고 있어요"+keyWord)
+                    includedData.push(eve)
+                }
+            }
+            })
+        }
         setResult(includedData)
     }
     useEffect(()=>{
