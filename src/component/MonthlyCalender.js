@@ -3,7 +3,6 @@ import moment from 'moment'
 import "../style/monthlyCalender.scss"
 import { useHistory } from "react-router";
 import Modal from "./Modal";
-import EventData from "../data/eventlist"
 import { firestore } from "./fbase";
 
 const MonthlyCalender = ({date, userObject, events})=>{
@@ -11,7 +10,6 @@ const MonthlyCalender = ({date, userObject, events})=>{
     let year = split[0];
     let month = split[1];
     let day = split[2];
-    let isOwner = true;
 
     month = month.padStart(2,0);
     const [specific,setSpecific] = useState(moment(date));
