@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import eventlist from "../data/eventlist";
-import Event from "../data/eventlist";
 import "../style/search.scss";
 import Result from "./Result";
 function Search({userObject, events}){

@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react"
 import { useParams } from "react-router";
 import Event from "./Event"
-import EventData from "../data/eventlist"
 import {firestore} from "./fbase"
 
 

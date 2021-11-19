@@ -129,8 +129,8 @@ export default ({data, userObject})=>{
                     <span className="input-group-text" id="inputGroup-sizing-sm">제목</span>
                     <input className="form-control" type="text"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="수정할 제목" onChange={onChangeTitle}/>
                 </div>
-                <div class="input-group input-group-sm mb-1">
-                    <span class="input-group-text">시작 시간과 종료 시간</span>
+                <div className="input-group input-group-sm mb-1">
+                    <span className="input-group-text">시작 시간과 종료 시간</span>
                     <input type="time" aria-label="start_time" className="form-control" onChange={onChangeTime_start}/>
                     <input type="time" aria-label="end_time" className="form-control" onChange={onChangeTime_end}/>
                 </div>

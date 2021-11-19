@@ -1,4 +1,4 @@
-import eventlist from "../data/eventlist";
+
 import EachResult from "./EachResult";
 import "../style/result.scss";
 export default ({data})=>{

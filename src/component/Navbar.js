@@ -22,6 +22,7 @@ function Navbar({isLoggedIn}){
         }
         else{
             alert("로그인 해주세요");
+            history.push("/auth")
         }
     }
     return(
@@ -29,7 +30,7 @@ function Navbar({isLoggedIn}){
             <div className="container menuBar">
                 <div className="row center">
                     <div className="col-4 logo"><h3>Calender</h3></div>
-                    <div class="btn-group col-4 " role="group" aria-label="Basic outlined example">
+                    <div className="btn-group col-4 " role="group" aria-label="Basic outlined example">
                         <button type="button" className="ymd btn btn-outline-primary" onClick={()=>history.push('/year')}>Y</button>
                         <button type="button" className="ymd btn btn-outline-primary" onClick={()=>history.push(`/month/${today_year}-${today_month}-${today_day}`)}>M</button>
                         <button type="button" className="ymd btn btn-outline-primary" onClick={searchClick}>🔍</button>

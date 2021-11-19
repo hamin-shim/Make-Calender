@@ -91,17 +91,17 @@ const Month = ({ userObject, events, isLoggedIn }) => {
         <MonthlyCalender date={id} userObject={userObject} events={events}/>
         <div className="col-lg-3 col-md-6 col-8 make">
             <form onSubmit = {onSubmit}>
-                <label for = "date">일자</label>
+                <label htmlFor = "date">일자</label>
                 <input value={date} onChange={onChangeDate} name = "date" type="date" placeholder="2000-00-00"/>
-                <label for = "time_start">시작 시간</label>
+                <label htmlFor = "time_start">시작 시간</label>
                 <input value={time_start} onChange={onChangeTime_start} name = "time_start" type="time" placeholder="00:00"/>
-                <label for = "time_end">종료 시간</label>
+                <label htmlFor = "time_end">종료 시간</label>
                 <input value={time_end} onChange={onChangeTime_end} name = "time_end" type="time" placeholder="00:00"/>
-                <label for = "title">제목</label>
+                <label htmlFor = "title">제목</label>
                 <input value={title} onChange={onChangeTitle} name = "title" type="text" placeholder="제목을 입력하세요"/>
-                <label for = "tag">태그</label>
+                <label htmlFor = "tag">태그</label>
                 <input value={tag} onChange={onChangeTag} name = "tag" type="text" placeholder="#insert #study"/>
-                <label for = "description">설명</label>
+                <label htmlFor = "description">설명</label>
                 <textarea value={description} onChange={onChangeDescription} name = "description" className="description" placeholder="어떤 일정인가요?" cols="50" rows="5"/>
                 <input type="submit" value="Register" />
             </form>
