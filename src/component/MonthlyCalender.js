@@ -10,6 +10,7 @@ const MonthlyCalender = ({date, userObject, events})=>{
     let split = date.split("-")
     let year = split[0];
     let month = split[1];
+    let day = split[2];
     let isOwner = true;
 
     month = month.padStart(2,0);
@@ -18,18 +19,19 @@ const MonthlyCalender = ({date, userObject, events})=>{
     const [toggle, setToggle] = useState(false);
     const [isEventExist, setIsEventExist] = useState(false);
     const checkEvent = (checkDate)=>{
-        let isOwner = false;
         let cnt=0;
         events.map((day)=>{
             if(userObject&&userObject.uid===day.creatorId){
                 if(day.date===checkDate){
                     cnt++;
                 }
-                isOwner = day.creatorId===userObject.uid;
             }
         })
         return (cnt);
     }
+    useEffect(()=>{
+        setSpecific(moment(date))
+    },[date])
     const history = useHistory();
     const today = getMoment;
     const firstWeek = specific.clone().startOf('month').week();
@@ -39,7 +41,6 @@ const MonthlyCalender = ({date, userObject, events})=>{
         const dayData = dayId.split(" ");
         const day = dayData[0];
         const isItDate = dayData[1];
-        console.log(day, isItDate)
         if(isItDate==="false"){
             history.push(`/month/${year}-${month}-${String(day).padStart(2,0)}`)
             setToggle(true)
@@ -64,6 +65,10 @@ const MonthlyCalender = ({date, userObject, events})=>{
     const onToggleClick = ()=>{
         setToggle(prev=>!prev)
     }
+    const onbackToCalenderClick = ()=>{
+        setToggle(prev=>!prev)
+        history.push(`/month/${year}-${month}`)
+    }
     const calendarArr = ()=>{
         let result = [];
         let week = firstWeek;
@@ -73,13 +78,13 @@ const MonthlyCalender = ({date, userObject, events})=>{
                     Array(7).fill(0).map((data, index)=>{
                         let wrongNum = false;
                         let days = specific.clone().startOf('year').week(week).startOf('week').add(index, 'day');
+
                         if((week === firstWeek && parseInt(days.format('D'))>8)||(week===lastWeek && parseInt(days.format('D'))<8)){
                             wrongNum = true;
                         }
-
                         return (<>
-                            <div onClick={onClickHandler} className = {`${parseInt(days.format('D'))} ${wrongNum} day`} key={index}>{(wrongNum) ? null : days.format('D')}
-                            {checkEvent(`${year}-${month}-${parseInt(days.format('D'))}`)&&!wrongNum ? <span className="eventExist">˚</span> : null}
+                            <div onClick={onClickHandler} className = {`${parseInt(days.format('D'))} ${wrongNum} day ${days.format('YYYY-MM-DD')===date ? "identify" : ""} ${today.format('YYYY-MM-DD')===days.format('YYYY-MM-DD') ? "today": ""} `} key={index}>{(wrongNum) ? null : days.format('D')}
+                            {checkEvent(`${year}-${month}-${String(parseInt(days.format('D'))).padStart(2,0)}`)&&!wrongNum ? <span className="eventExist">˚</span> : null}
                             </div>
                             </>
                         )
@@ -98,7 +103,7 @@ const MonthlyCalender = ({date, userObject, events})=>{
                         <button className="btn btn-outline-secondary" onClick={onMonthAdder}>▷▷</button>
                     </div>
                     <div className={`monthTotal ${toggle ? "hidden" : null}`}>
-                        {toggle ?<span onClick={onToggleClick}>달력 펼치기</span> : null}
+                        {toggle ?<span onClick={onbackToCalenderClick}>달력 펼치기</span> : null}
                         <div className="week dayName">
                             <div className="day sun  word ">Sun</div>
                             <div className="day word ">Mon</div>
