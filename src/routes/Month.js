@@ -88,7 +88,7 @@ const Month = ({ userObject, events, isLoggedIn }) => {
     return(
         <div className="container monthScreen">
             <div className="row">
-        <MonthlyCalender date={id} userObject={userObject} events={events}/>
+        <MonthlyCalender date={id} userObject={userObject} events={events} isLoggedIn={isLoggedIn}/>
         <div className="col-lg-3 col-md-6 col-8 make">
             <form onSubmit = {onSubmit}>
                 <label htmlFor = "date">일자</label>

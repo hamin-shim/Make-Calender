@@ -2,7 +2,8 @@ import React, { useState } from "react"
 import "../style/modal.scss"
 import { firestore } from "../fbase"
 const Event = ({data, userObject})=>{
-
+    let screenWidth = window.screen.width;
+    console.log(screenWidth<800);
     String.format = function() { 
         let args = arguments;
         return args[0].replace(/{(\d+)}/g, function(match, num) { 
@@ -121,20 +122,36 @@ const Event = ({data, userObject})=>{
             <form className={`editEvent ${ toggle ? null : "hidden"}`} onSubmit={onSubmit}>
                 <div className="input-group input-group-sm mb-1">
                     <span className="input-group-text" id="inputGroup-sizing-sm">제목</span>
-                    <input className="form-control" type="text"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="수정할 제목" onChange={onChangeTitle}/>
+                    <input className="form-control" type="text"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="수정할 제목" value={newTitle} onChange={onChangeTitle}/>
                 </div>
-                <div className="input-group input-group-sm mb-1">
-                    <span className="input-group-text">시작 시간과 종료 시간</span>
-                    <input type="time" aria-label="start_time" className="form-control" onChange={onChangeTime_start}/>
-                    <input type="time" aria-label="end_time" className="form-control" onChange={onChangeTime_end}/>
-                </div>
+                {/* <div className="input-group input-group-sm mb-1">
+                    <span className="input-group-text">시작/종료</span>
+                    <input value={newTime_start} type="time" aria-label="start_time" className="form-control" onChange={onChangeTime_start}/>
+                    <input value={newTime_end} type="time" aria-label="end_time" className="form-control" onChange={onChangeTime_end}/>
+                </div> */}
+                {screenWidth<800 ? <>
+                    <div className="input-group input-group-sm mb-1">
+                        <span className="input-group-text">시작</span>
+                        <input value={newTime_start} type="time" aria-label="start_time" className="form-control" onChange={onChangeTime_start}/>
+                    </div>
+                    <div className="input-group input-group-sm mb-1">
+                        <span className="input-group-text">종료</span>
+                        <input value={newTime_end} type="time" aria-label="end_time" className="form-control" onChange={onChangeTime_end}/>
+                    </div>
+                </> : 
+                    <div className="input-group input-group-sm mb-1">
+                        <span className="input-group-text">시작/종료</span>
+                        <input value={newTime_start} type="time" aria-label="start_time" className="form-control" onChange={onChangeTime_start}/>
+                        <input value={newTime_end} type="time" aria-label="end_time" className="form-control" onChange={onChangeTime_end}/>
+                    </div>
+                }
                 <div className="input-group input-group-sm mb-1">
                     <span className="input-group-text" id="inputGroup-sizing-sm">태그</span>
-                    <input className="form-control"type="text"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="#insert #study" onChange={onChangeTag}/>
+                    <input value={newTag} className="form-control"type="text"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="#insert #study" onChange={onChangeTag}/>
                 </div>
                 <div className="input-group input-group-sm  mb-1">
                     <span className="input-group-text" id="inputGroup-sizing-sm">설명</span>
-                    <textarea className="form-control" name = "title"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="어떤 일정으로 수정하실건가요?"  cols="50" rows="5" onChange={onChangeDescription}/>
+                    <textarea value={newDescription} className="form-control" name = "title"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="어떤 일정으로 수정하실건가요?"  cols="50" rows="5" onChange={onChangeDescription}/>
                 </div>
                 <div>
                     <input className="btn btn-light btn-sm" type="submit" value="수정하기"/>

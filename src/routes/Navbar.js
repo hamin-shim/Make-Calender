@@ -30,7 +30,7 @@ function Navbar({isLoggedIn}){
         <div>
             <div className="container menuBar">
                 <div className="row center">
-                    <div className="col-4 logo"><h3>Calender</h3></div>
+                    <div onClick={()=>history.push(`/month/${today_year}-${today_month}-${today_day}`)} className="col-4 logo"><h3>Calender</h3></div>
                     <div className="btn-group col-4 " role="group" aria-label="Basic outlined example">
                         <button type="button" className="ymd btn btn-outline-primary" onClick={()=>history.push('/year')}>Y</button>
                         <button type="button" className="ymd btn btn-outline-primary" onClick={()=>history.push(`/month/${today_year}-${today_month}-${today_day}`)}>M</button>

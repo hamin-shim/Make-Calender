@@ -4,7 +4,7 @@ import "../style/monthlyCalender.scss"
 import { useHistory } from "react-router";
 import Modal from "./Modal";
 
-const MonthlyCalender = ({date, userObject, events})=>{
+const MonthlyCalender = ({date, userObject, events, isLoggedIn})=>{
     let split = date.split("-")
     let year = split[0];
     let month = split[1];
@@ -31,13 +31,18 @@ const MonthlyCalender = ({date, userObject, events})=>{
     const firstWeek = specific.clone().startOf('month').week();
     const lastWeek = specific.clone().endOf('month').week() === 1 ? 53 : specific.clone().endOf('month').week();
     const onClickHandler = (e)=>{
-        const {target:{className : dayId}} = e;
-        const dayData = dayId.split(" ");
-        const day = dayData[0];
-        const isItDate = dayData[1];
-        if(isItDate==="false"){
-            history.push(`/month/${year}-${month}-${String(day).padStart(2,0)}`)
-            setToggle(true)
+        if(!isLoggedIn){
+            alert("로그인 후 이용해주세요!");
+            history.push("/auth")
+        }else{
+            const {target:{className : dayId}} = e;
+            const dayData = dayId.split(" ");
+            const day = dayData[0];
+            const isItDate = dayData[1];
+            if(isItDate==="false"){
+                history.push(`/month/${year}-${month}-${String(day).padStart(2,0)}`)
+                setToggle(true)
+            }
         }
     }
     const onMonthSubtracter = ()=>{
