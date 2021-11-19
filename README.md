@@ -5,6 +5,13 @@
 2. Month
 3. Search
 
-## Available Scripts
+Year/Month 파트는 기본적으로 로그인을 요하지 않지만 Search는 로그인을 해야지만 이용할 수 있습니다.
+
+## Year
+
+## Month
+
+## Search
+- [x] 이건 뭐지? 
 
 In the project directory, you can run:
