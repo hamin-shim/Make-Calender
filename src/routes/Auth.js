@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { authService, firebaseInstance } from "./fbase"
+import { authService, firebaseInstance } from "../fbase"
 import "../style/auth.scss"
 import { useHistory } from "react-router";
 

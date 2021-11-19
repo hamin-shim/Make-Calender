@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "../style/search.scss";
-import Result from "./Result";
+import Result from "../component/Result";
 function Search({userObject, events}){
     const [searchWhat, setSearchWhat] = useState(null);
     const [keyWord, setKeyWord] = useState(null)
@@ -11,10 +11,9 @@ function Search({userObject, events}){
     }
     const searchResult = (keyWord)=>{
         let includedData = []
-        if(userObject){
+        if(!userObject){
             alert("로그인 해주세요")
-        }
-        else{
+        }else{
             events.map((eve)=>{
             if(eve.creatorId===userObject.uid){
                 if((eve.title.includes(keyWord))|| //title에 포함되거나

@@ -1,8 +1,8 @@
-import MonthlyCalender from "./MonthlyCalender"
+import MonthlyCalender from "../component/MonthlyCalender"
 import "../style/month.scss"
 import { useHistory, useParams } from "react-router"
 import React, { useState } from "react";
-import { firestore } from "./fbase";
+import { firestore } from "../fbase";
 
 const Month = ({ userObject, events, isLoggedIn }) => {
     const {id} = useParams();

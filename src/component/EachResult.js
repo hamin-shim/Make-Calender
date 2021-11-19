@@ -8,7 +8,8 @@ const EachResult =  ({data})=>{
         }} className="eachResult">
             <h3>{data.title}</h3>
             <h4>{data.date}</h4>
-            <h5>{data.description}</h5>
+            <h5>{data.tag}</h5>
+            <h6>{data.description}</h6>
         </div>
     )
 }

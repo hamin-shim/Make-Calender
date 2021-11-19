@@ -1,4 +1,4 @@
-import YearCalender from "./YearCalender";
+import YearCalender from "../component/YearCalender";
 const Home = ()=>{
     return(
         <div>

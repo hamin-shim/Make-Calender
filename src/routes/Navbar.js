@@ -1,6 +1,7 @@
 import {useHistory} from 'react-router-dom'
 import "../style/navbar.scss"
-import { authService } from './fbase';
+import { authService } from '../fbase';
+
 
 function Navbar({isLoggedIn}){
     const history = useHistory();

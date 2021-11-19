@@ -1,11 +1,10 @@
 import React, { useState } from "react"
 import "../style/modal.scss"
-import { firestore } from "./fbase"
+import { firestore } from "../fbase"
 const Event = ({data, userObject})=>{
 
     String.format = function() { 
         let args = arguments;
-        
         return args[0].replace(/{(\d+)}/g, function(match, num) { 
             num = Number(num) + 1;
             return typeof(args[num]) != undefined ? args[num] : match;
@@ -98,7 +97,6 @@ const Event = ({data, userObject})=>{
         const ok = window.confirm("정말 삭제하시겠습니까?")
         if(ok){
             await firestore.doc(String.format("events/{0}",data.id)).delete();
-
             alert("일정이 삭제되었습니다")
         }
         else{
@@ -111,6 +109,7 @@ const Event = ({data, userObject})=>{
             <>
                 <div className="title">{data.title}</div>
                 <div className="time">{data.time_start}~{data.time_end}시까지</div>
+                <div className="tag">{data.tag}</div>
                 <div className="description">{data.description}</div>
                 {toggle ? null :<div className="editAndDelete">
                     <button onClick={onEditClick} className="btn btn-secondary btn-sm">수정하기</button>
