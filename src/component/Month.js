@@ -1,10 +1,10 @@
 import MonthlyCalender from "./MonthlyCalender"
 import "../style/month.scss"
-import { useParams } from "react-router"
+import { useHistory, useParams } from "react-router"
 import React, { useEffect, useState } from "react";
 import { firestore } from "./fbase";
 
-const Month = ({ userObject, events }) => {
+const Month = ({ userObject, events, isLoggedIn }) => {
     const {id} = useParams();
     const [date, setDate] = useState("");
     const [time_start, setTime_start] = useState("");
@@ -12,34 +12,41 @@ const Month = ({ userObject, events }) => {
     const [title, setTitle] = useState("");
     const [tag, setTag] = useState("");
     const [description, setDescription] = useState("");
+    const history = useHistory();
     const onSubmit = (event) => {
         event.preventDefault();
-        if(!date){
-            alert("날짜를 설정해주세요");
-        }
-        else if(!time_start || !time_end){
-            alert("시작시간과 끝시간을 모두 정해주세요");
-        }
-        else if(time_start >= time_end){
-            alert("시작시간과 끝시간을 확인해주세요");
-        }
-        else{
-            firestore.collection("events").add({
-                date,
-                time_start,
-                time_end,
-                title,
-                tag,
-                description,
-                createdAt: Date.now(),
-                creatorId: userObject.uid,
-            });
-            setDate("");
-            setTime_start("");
-            setTime_end("");
-            setTitle("");
-            setTag("");
-            setDescription("");
+        if(isLoggedIn){
+
+            if(!date){
+                alert("날짜를 설정해주세요");
+            }
+            else if(!time_start || !time_end){
+                alert("시작시간과 끝시간을 모두 정해주세요");
+            }
+            else if(time_start >= time_end){
+                alert("시작시간과 끝시간을 확인해주세요");
+            }
+            else{
+                firestore.collection("events").add({
+                    date,
+                    time_start,
+                    time_end,
+                    title,
+                    tag,
+                    description,
+                    createdAt: Date.now(),
+                    creatorId: userObject.uid,
+                });
+                setDate("");
+                setTime_start("");
+                setTime_end("");
+                setTitle("");
+                setTag("");
+                setDescription("");
+            }
+        }else{
+            alert("로그인 후 이용해주세요")
+            history.push("/auth")
         }
     };
     const onChangeDate = (event) => {

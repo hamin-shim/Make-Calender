@@ -17,10 +17,10 @@ export default ({isLoggedIn, userObject, events}) => {
         <Home/>
       </Route>
       <Route path="/month/:id">
-        <Month userObject={userObject} events={events} />
+        <Month userObject={userObject} events={events} isLoggedIn={isLoggedIn} />
       </Route>
       <Route path="/search">
-        <Search userObject={userObject} events={events}/>
+        <Search userObject={userObject} events={events} isLoggedIn={isLoggedIn}/>
       </Route>
       <Route path="/auth">
         <Auth/>
