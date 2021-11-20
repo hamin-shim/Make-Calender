@@ -3,7 +3,7 @@ import "../style/search.scss";
 import Result from "../component/Result";
 function Search({userObject, events}){
     const [searchWhat, setSearchWhat] = useState(null);
-    const [keyWord, setKeyWord] = useState(null)
+    const [keyWord, setKeyWord] = useState("")
     const [result, setResult] = useState([]);
     const onSubmit = (e)=>{
         e.preventDefault();
@@ -28,7 +28,11 @@ function Search({userObject, events}){
         setResult(includedData)
     }
     useEffect(()=>{
+        searchResult( )
+    },[])
+    useEffect(()=>{
         searchResult(keyWord)
+        console.log(searchWhat, keyWord)
     },[keyWord])
     return(
         <div className="search mt-5" >
