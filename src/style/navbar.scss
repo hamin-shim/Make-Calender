@@ -1,47 +1,48 @@
 @import "./variables";
-.menuBar{
-    padding: 2vh;
-    border-bottom: 2px solid rgba(0,0,0,0.2);
-    .btn{
-        color:rgb(101, 101, 230);
-        border-color: rgb(101, 101, 230);
-    }
-    .btn:hover,
-    .btn:active,
-    .btn:focus,
-    .btn.active {
+.menuBar {
+  padding: 2vh;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  .btn {
+    color: rgb(101, 101, 230);
+    border-color: rgb(101, 101, 230);
+  }
+  .btn:hover,
+  .btn:active,
+  .btn:focus,
+  .btn.active {
     background: rgb(101, 101, 230);
     color: #ffffff;
     border-color: rgb(101, 101, 230);
-    }
+  }
 }
-.center{
-    align-items: center;
+.center {
+  align-items: center;
 }
-.logo{
-    h3{
-        font-size: $font-medium;
-        margin-bottom: 0;
+.logo {
+  h3 {
+    font-size: $font-medium;
+    margin-bottom: 0;
+    cursor: pointer;
     @media (max-width: 400px) {
-        font-size: $font-default;
+      font-size: $font-default;
     }
-    }
-    color: rgb(101, 101, 230);
+  }
+  color: rgb(101, 101, 230);
 }
-.ymd{
+.ymd {
+  font-size: $font-default;
+  @media (max-width: 400px) {
+    font-size: $font-small;
+  }
+}
+.login {
+  button {
     font-size: $font-default;
     @media (max-width: 400px) {
-        font-size: $font-small;
+      font-size: $font-small;
     }
-}
-.login{
-    button{
-        font-size: $font-default;
-        @media (max-width: 400px) {
-            font-size: $font-small;
-    }
-    }
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  }
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }

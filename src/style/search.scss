@@ -1,14 +1,26 @@
-.search{
-    width: 100%;
-    height: 1000px;
-    form{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        .searchBar{
-            display: flex;
-            width: 60%;
-        }
-
+.search {
+  width: 100%;
+  height: 1000px;
+  form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .searchBar {
+      display: flex;
+      width: 60%;
     }
+  }
+  .btn {
+    margin-left: 10px;
+    color: rgb(101, 101, 230);
+    border-color: rgb(101, 101, 230);
+  }
+  .btn:hover,
+  .btn:active,
+  .btn:focus,
+  .btn.active {
+    background: rgb(101, 101, 230);
+    color: #ffffff;
+    border-color: rgb(101, 101, 230);
+  }
 }

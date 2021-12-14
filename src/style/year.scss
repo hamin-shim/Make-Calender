@@ -1,78 +1,86 @@
 @import "./variables";
-.App{
-    background-color: #f1f2f6;
+.App {
+  background-color: #f1f2f6;
 }
-.home{
+.home {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .control {
     width: 100%;
+    margin: auto;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    .control{
-        width: 100%;
+    font-size: 30px;
+    margin: 30px 0px;
+    .btn {
+      margin: 0 30px;
+      color: rgb(101, 101, 230);
+      border-color: rgb(101, 101, 230);
+    }
+    .btn:hover,
+    .btn:active,
+    .btn:focus,
+    .btn.active {
+      background: rgb(101, 101, 230);
+      color: #ffffff;
+      border-color: rgb(101, 101, 230);
+    }
+  }
+  .monthLab {
+    width: 100%;
+    gap: 10px;
+    .row {
+      justify-content: center;
+      width: 100%;
+      margin: auto;
+    }
+    .oneMonthLab {
+      margin-bottom: 20px;
+    }
+    .month {
+      cursor: pointer;
+      height: 100%;
+      padding: 10px;
+      border: 2px solid rgba(170, 167, 167, 0.548);
+      border-radius: 15px;
+      h1 {
+        margin: 5px;
+        margin-top: 0px;
+        font-size: $font-medium;
+        font-weight: 400;
+      }
+      .week {
         display: flex;
-        justify-content: space-evenly;
-        font-size: 30px;
-        margin: 30px 0px;
-        .btn{
-            color:rgb(101, 101, 230);
-            border-color: rgb(101, 101, 230);
-        }
-        .btn:hover,
-        .btn:active,
-        .btn:focus,
-        .btn.active {
-        background: rgb(101, 101, 230);
-        color: #ffffff;
-        border-color: rgb(101, 101, 230);
-        }
-    }
-    .monthLab{
         width: 100%;
-        gap: 10px;
-        .row{
-            justify-content: center;
+        .day {
+          border-top: 1px solid rgba(0, 0, 0, 0.1);
+          width: 15%;
+          height: $div-small;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: $font-small;
+          @media (min-width: 500px) {
+            font-size: $font-default;
+            height: $div-large;
+          }
         }
-        .month{
-            margin: 10px;
-            padding: 10px;
-            border: 2px solid rgba(170, 167, 167, 0.548);
-            border-radius: 15px;
-            h1{
-                margin: 5px;
-                margin-top: 0px;
-                font-size: $font-medium;
-                font-weight: 400;
-            }
-            .week{
-                display: flex;
-                width: 100%;
-                .day{
-                    border-top: 1px solid rgba(0, 0, 0, 0.1);
-                    width: 15%;
-                    height: $div-small;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    font-size: $font-small;
-                    @media (min-width:500px) {
-                        font-size: $font-default;
-                        height: $div-large;     
-                    }
-                }
-                .false{
-                    &:hover{
-                        background-color: gray;
-                        color: white;
-                    }
-                }
-                .sun{
-                    color: red;
-                }
-                .sat{
-                    color: blue;
-                }
-            }
+        .false {
+          &:hover {
+            background-color: gray;
+            color: white;
+          }
         }
+        .sun {
+          color: red;
+        }
+        .sat {
+          color: blue;
+        }
+      }
     }
+  }
 }
